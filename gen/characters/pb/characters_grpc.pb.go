@@ -27,6 +27,14 @@ const (
 	CharactersService_CharacterByName_FullMethodName                  = "/v1.CharactersService/CharacterByName"
 	CharactersService_ShortOnlineCharactersDataByGUIDs_FullMethodName = "/v1.CharactersService/ShortOnlineCharactersDataByGUIDs"
 	CharactersService_SavePlayerPosition_FullMethodName               = "/v1.CharactersService/SavePlayerPosition"
+	CharactersService_GetFriendsList_FullMethodName                   = "/v1.CharactersService/GetFriendsList"
+	CharactersService_AddFriend_FullMethodName                        = "/v1.CharactersService/AddFriend"
+	CharactersService_RemoveFriend_FullMethodName                     = "/v1.CharactersService/RemoveFriend"
+	CharactersService_SetFriendNote_FullMethodName                    = "/v1.CharactersService/SetFriendNote"
+	CharactersService_AddIgnore_FullMethodName                        = "/v1.CharactersService/AddIgnore"
+	CharactersService_RemoveIgnore_FullMethodName                     = "/v1.CharactersService/RemoveIgnore"
+	CharactersService_NotifyStatusChange_FullMethodName               = "/v1.CharactersService/NotifyStatusChange"
+	CharactersService_GetOnlineCharacters_FullMethodName              = "/v1.CharactersService/GetOnlineCharacters"
 )
 
 // CharactersServiceClient is the client API for CharactersService service.
@@ -42,6 +50,16 @@ type CharactersServiceClient interface {
 	ShortOnlineCharactersDataByGUIDs(ctx context.Context, in *ShortCharactersDataByGUIDsRequest, opts ...grpc.CallOption) (*ShortCharactersDataByGUIDsResponse, error)
 	// Would effect only offline player.
 	SavePlayerPosition(ctx context.Context, in *SavePlayerPositionRequest, opts ...grpc.CallOption) (*SavePlayerPositionResponse, error)
+	// Friends and ignore list management
+	GetFriendsList(ctx context.Context, in *GetFriendsListRequest, opts ...grpc.CallOption) (*GetFriendsListResponse, error)
+	AddFriend(ctx context.Context, in *AddFriendRequest, opts ...grpc.CallOption) (*AddFriendResponse, error)
+	RemoveFriend(ctx context.Context, in *RemoveFriendRequest, opts ...grpc.CallOption) (*RemoveFriendResponse, error)
+	SetFriendNote(ctx context.Context, in *SetFriendNoteRequest, opts ...grpc.CallOption) (*SetFriendNoteResponse, error)
+	AddIgnore(ctx context.Context, in *AddIgnoreRequest, opts ...grpc.CallOption) (*AddIgnoreResponse, error)
+	RemoveIgnore(ctx context.Context, in *RemoveIgnoreRequest, opts ...grpc.CallOption) (*RemoveIgnoreResponse, error)
+	NotifyStatusChange(ctx context.Context, in *NotifyStatusChangeRequest, opts ...grpc.CallOption) (*NotifyStatusChangeResponse, error)
+	// Get all online character GUIDs for a realm
+	GetOnlineCharacters(ctx context.Context, in *GetOnlineCharactersRequest, opts ...grpc.CallOption) (*GetOnlineCharactersResponse, error)
 }
 
 type charactersServiceClient struct {
@@ -124,6 +142,78 @@ func (c *charactersServiceClient) SavePlayerPosition(ctx context.Context, in *Sa
 	return out, nil
 }
 
+func (c *charactersServiceClient) GetFriendsList(ctx context.Context, in *GetFriendsListRequest, opts ...grpc.CallOption) (*GetFriendsListResponse, error) {
+	out := new(GetFriendsListResponse)
+	err := c.cc.Invoke(ctx, CharactersService_GetFriendsList_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *charactersServiceClient) AddFriend(ctx context.Context, in *AddFriendRequest, opts ...grpc.CallOption) (*AddFriendResponse, error) {
+	out := new(AddFriendResponse)
+	err := c.cc.Invoke(ctx, CharactersService_AddFriend_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *charactersServiceClient) RemoveFriend(ctx context.Context, in *RemoveFriendRequest, opts ...grpc.CallOption) (*RemoveFriendResponse, error) {
+	out := new(RemoveFriendResponse)
+	err := c.cc.Invoke(ctx, CharactersService_RemoveFriend_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *charactersServiceClient) SetFriendNote(ctx context.Context, in *SetFriendNoteRequest, opts ...grpc.CallOption) (*SetFriendNoteResponse, error) {
+	out := new(SetFriendNoteResponse)
+	err := c.cc.Invoke(ctx, CharactersService_SetFriendNote_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *charactersServiceClient) AddIgnore(ctx context.Context, in *AddIgnoreRequest, opts ...grpc.CallOption) (*AddIgnoreResponse, error) {
+	out := new(AddIgnoreResponse)
+	err := c.cc.Invoke(ctx, CharactersService_AddIgnore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *charactersServiceClient) RemoveIgnore(ctx context.Context, in *RemoveIgnoreRequest, opts ...grpc.CallOption) (*RemoveIgnoreResponse, error) {
+	out := new(RemoveIgnoreResponse)
+	err := c.cc.Invoke(ctx, CharactersService_RemoveIgnore_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *charactersServiceClient) NotifyStatusChange(ctx context.Context, in *NotifyStatusChangeRequest, opts ...grpc.CallOption) (*NotifyStatusChangeResponse, error) {
+	out := new(NotifyStatusChangeResponse)
+	err := c.cc.Invoke(ctx, CharactersService_NotifyStatusChange_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *charactersServiceClient) GetOnlineCharacters(ctx context.Context, in *GetOnlineCharactersRequest, opts ...grpc.CallOption) (*GetOnlineCharactersResponse, error) {
+	out := new(GetOnlineCharactersResponse)
+	err := c.cc.Invoke(ctx, CharactersService_GetOnlineCharacters_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // CharactersServiceServer is the server API for CharactersService service.
 // All implementations must embed UnimplementedCharactersServiceServer
 // for forward compatibility
@@ -137,6 +227,16 @@ type CharactersServiceServer interface {
 	ShortOnlineCharactersDataByGUIDs(context.Context, *ShortCharactersDataByGUIDsRequest) (*ShortCharactersDataByGUIDsResponse, error)
 	// Would effect only offline player.
 	SavePlayerPosition(context.Context, *SavePlayerPositionRequest) (*SavePlayerPositionResponse, error)
+	// Friends and ignore list management
+	GetFriendsList(context.Context, *GetFriendsListRequest) (*GetFriendsListResponse, error)
+	AddFriend(context.Context, *AddFriendRequest) (*AddFriendResponse, error)
+	RemoveFriend(context.Context, *RemoveFriendRequest) (*RemoveFriendResponse, error)
+	SetFriendNote(context.Context, *SetFriendNoteRequest) (*SetFriendNoteResponse, error)
+	AddIgnore(context.Context, *AddIgnoreRequest) (*AddIgnoreResponse, error)
+	RemoveIgnore(context.Context, *RemoveIgnoreRequest) (*RemoveIgnoreResponse, error)
+	NotifyStatusChange(context.Context, *NotifyStatusChangeRequest) (*NotifyStatusChangeResponse, error)
+	// Get all online character GUIDs for a realm
+	GetOnlineCharacters(context.Context, *GetOnlineCharactersRequest) (*GetOnlineCharactersResponse, error)
 	mustEmbedUnimplementedCharactersServiceServer()
 }
 
@@ -167,6 +267,30 @@ func (UnimplementedCharactersServiceServer) ShortOnlineCharactersDataByGUIDs(con
 }
 func (UnimplementedCharactersServiceServer) SavePlayerPosition(context.Context, *SavePlayerPositionRequest) (*SavePlayerPositionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SavePlayerPosition not implemented")
+}
+func (UnimplementedCharactersServiceServer) GetFriendsList(context.Context, *GetFriendsListRequest) (*GetFriendsListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetFriendsList not implemented")
+}
+func (UnimplementedCharactersServiceServer) AddFriend(context.Context, *AddFriendRequest) (*AddFriendResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddFriend not implemented")
+}
+func (UnimplementedCharactersServiceServer) RemoveFriend(context.Context, *RemoveFriendRequest) (*RemoveFriendResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveFriend not implemented")
+}
+func (UnimplementedCharactersServiceServer) SetFriendNote(context.Context, *SetFriendNoteRequest) (*SetFriendNoteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method SetFriendNote not implemented")
+}
+func (UnimplementedCharactersServiceServer) AddIgnore(context.Context, *AddIgnoreRequest) (*AddIgnoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddIgnore not implemented")
+}
+func (UnimplementedCharactersServiceServer) RemoveIgnore(context.Context, *RemoveIgnoreRequest) (*RemoveIgnoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveIgnore not implemented")
+}
+func (UnimplementedCharactersServiceServer) NotifyStatusChange(context.Context, *NotifyStatusChangeRequest) (*NotifyStatusChangeResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method NotifyStatusChange not implemented")
+}
+func (UnimplementedCharactersServiceServer) GetOnlineCharacters(context.Context, *GetOnlineCharactersRequest) (*GetOnlineCharactersResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetOnlineCharacters not implemented")
 }
 func (UnimplementedCharactersServiceServer) mustEmbedUnimplementedCharactersServiceServer() {}
 
@@ -325,6 +449,150 @@ func _CharactersService_SavePlayerPosition_Handler(srv interface{}, ctx context.
 	return interceptor(ctx, in, info, handler)
 }
 
+func _CharactersService_GetFriendsList_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetFriendsListRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).GetFriendsList(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_GetFriendsList_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).GetFriendsList(ctx, req.(*GetFriendsListRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CharactersService_AddFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddFriendRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).AddFriend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_AddFriend_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).AddFriend(ctx, req.(*AddFriendRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CharactersService_RemoveFriend_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveFriendRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).RemoveFriend(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_RemoveFriend_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).RemoveFriend(ctx, req.(*RemoveFriendRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CharactersService_SetFriendNote_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SetFriendNoteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).SetFriendNote(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_SetFriendNote_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).SetFriendNote(ctx, req.(*SetFriendNoteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CharactersService_AddIgnore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddIgnoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).AddIgnore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_AddIgnore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).AddIgnore(ctx, req.(*AddIgnoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CharactersService_RemoveIgnore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveIgnoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).RemoveIgnore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_RemoveIgnore_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).RemoveIgnore(ctx, req.(*RemoveIgnoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CharactersService_NotifyStatusChange_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(NotifyStatusChangeRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).NotifyStatusChange(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_NotifyStatusChange_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).NotifyStatusChange(ctx, req.(*NotifyStatusChangeRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _CharactersService_GetOnlineCharacters_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetOnlineCharactersRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(CharactersServiceServer).GetOnlineCharacters(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: CharactersService_GetOnlineCharacters_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(CharactersServiceServer).GetOnlineCharacters(ctx, req.(*GetOnlineCharactersRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // CharactersService_ServiceDesc is the grpc.ServiceDesc for CharactersService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -363,6 +631,38 @@ var CharactersService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SavePlayerPosition",
 			Handler:    _CharactersService_SavePlayerPosition_Handler,
+		},
+		{
+			MethodName: "GetFriendsList",
+			Handler:    _CharactersService_GetFriendsList_Handler,
+		},
+		{
+			MethodName: "AddFriend",
+			Handler:    _CharactersService_AddFriend_Handler,
+		},
+		{
+			MethodName: "RemoveFriend",
+			Handler:    _CharactersService_RemoveFriend_Handler,
+		},
+		{
+			MethodName: "SetFriendNote",
+			Handler:    _CharactersService_SetFriendNote_Handler,
+		},
+		{
+			MethodName: "AddIgnore",
+			Handler:    _CharactersService_AddIgnore_Handler,
+		},
+		{
+			MethodName: "RemoveIgnore",
+			Handler:    _CharactersService_RemoveIgnore_Handler,
+		},
+		{
+			MethodName: "NotifyStatusChange",
+			Handler:    _CharactersService_NotifyStatusChange_Handler,
+		},
+		{
+			MethodName: "GetOnlineCharacters",
+			Handler:    _CharactersService_GetOnlineCharacters_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -100,7 +100,8 @@ func main() {
 	}
 	defer nc.Close()
 
-	broadcaster := eventsBroadcaster.NewBroadcaster()
+	chatChannelsBroadcasterService := eventsBroadcaster.NewChatChannelsService()
+	broadcaster := eventsBroadcaster.NewBroadcaster(chatChannelsBroadcasterService)
 
 	chatListener := service.NewChatNatsListener(nc, root.RetrievedGatewayID, broadcaster)
 	err = chatListener.Listen()
@@ -130,6 +131,12 @@ func main() {
 	err = mmListener.Listen()
 	if err != nil {
 		log.Fatal().Err(err).Msg("can't listen to matchmaking events-broadcaster")
+	}
+
+	friendsListener := service.NewFriendsNatsListener(nc, broadcaster)
+	err = friendsListener.Listen()
+	if err != nil {
+		log.Fatal().Err(err).Msg("can't listen to friends events-broadcaster")
 	}
 
 	producer := events.NewGatewayProducerNatsJSON(nc, root.Ver, root.RealmID, root.RetrievedGatewayID)
@@ -163,6 +170,7 @@ func main() {
 			GroupServiceClient:               groupClient,
 			EventsProducer:                   producer,
 			EventsBroadcaster:                broadcaster,
+			ChatChannelsEventBroadcaster:     chatChannelsBroadcasterService,
 			CharsUpdsBarrier:                 charsUpdsBarrier,
 			RealmNamesService:                realmNamesServive,
 			GameServerGRPCConnMgr:            gameserverconn.DefaultGameServerGRPCConnMgr,

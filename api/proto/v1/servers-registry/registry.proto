@@ -194,3 +194,4 @@ message Server {
   bool   isCrossRealm = 3;
   string grpcAddress = 4;
 }
+

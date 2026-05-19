@@ -1,4 +1,6 @@
 vendor
 .idea
+.claude
 bin
 cache
+ac-part-of-protocol-code

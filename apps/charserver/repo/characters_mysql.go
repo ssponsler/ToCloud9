@@ -29,7 +29,21 @@ func (s CharactersPreparedStatements) Stmt() string {
 	case StmtSelectCharacterWithName:
 		return "SELECT c.guid, account, race, class, gender, level, zone, map, position_x, position_y, position_z, IFNULL(gm.guildid, 0) FROM characters AS c LEFT JOIN guild_member AS gm ON c.guid = gm.guid WHERE name = ?"
 	case StmtUpdateCharacterPosition:
-		return "UPDATE characters SET map = ?, position_x = ?, position_y = ?, position_z = ? WHERE guid = ?"
+		return "UPDATE characters SET map = ?, position_x = ?, position_y = ?, position_z = ?, orientation = ? WHERE guid = ?"
+	case StmtGetFriendsForPlayer:
+		return "SELECT friend, flags, note FROM character_social WHERE guid = ?"
+	case StmtAddFriend:
+		return "INSERT INTO character_social (guid, friend, flags, note) VALUES (?, ?, ?, ?)"
+	case StmtRemoveFriend:
+		return "DELETE FROM character_social WHERE guid = ? AND friend = ? AND flags = ?"
+	case StmtUpdateFriendNote:
+		return "UPDATE character_social SET note = ? WHERE guid = ? AND friend = ? AND flags = ?"
+	case StmtAddIgnore:
+		return "INSERT INTO character_social (guid, friend, flags, note) VALUES (?, ?, ?, '')"
+	case StmtRemoveIgnore:
+		return "DELETE FROM character_social WHERE guid = ? AND friend = ? AND flags = ?"
+	case StmtGetPlayersWhoHaveAsFriend:
+		return "SELECT guid FROM character_social WHERE friend = ? AND flags = ?"
 	}
 
 	panic(fmt.Errorf("unk stmt %d", s))
@@ -45,6 +59,13 @@ const (
 	StmtSelectAccountData
 	StmtSelectCharacterWithName
 	StmtUpdateCharacterPosition
+	StmtGetFriendsForPlayer
+	StmtAddFriend
+	StmtRemoveFriend
+	StmtUpdateFriendNote
+	StmtAddIgnore
+	StmtRemoveIgnore
+	StmtGetPlayersWhoHaveAsFriend
 )
 
 type CharactersMYSQL struct {
@@ -57,6 +78,13 @@ func NewCharactersMYSQL(db shrepo.CharactersDB) Characters {
 	db.SetPreparedStatement(StmtCharacterToLogin)
 	db.SetPreparedStatement(StmtSelectCharacterWithName)
 	db.SetPreparedStatement(StmtUpdateCharacterPosition)
+	db.SetPreparedStatement(StmtGetFriendsForPlayer)
+	db.SetPreparedStatement(StmtAddFriend)
+	db.SetPreparedStatement(StmtRemoveFriend)
+	db.SetPreparedStatement(StmtUpdateFriendNote)
+	db.SetPreparedStatement(StmtAddIgnore)
+	db.SetPreparedStatement(StmtRemoveIgnore)
+	db.SetPreparedStatement(StmtGetPlayersWhoHaveAsFriend)
 
 	return &CharactersMYSQL{
 		db: db,
@@ -218,11 +246,76 @@ func (c CharactersMYSQL) AccountDataForAccountID(ctx context.Context, realmID, a
 	return result, nil
 }
 
-func (c CharactersMYSQL) SaveCharacterPosition(ctx context.Context, realmID uint32, charGUID uint64, mapID uint32, x, y, z float32) error {
-	_, err := c.db.PreparedStatement(realmID, StmtUpdateCharacterPosition).ExecContext(ctx, mapID, x, y, z, charGUID)
+func (c CharactersMYSQL) SaveCharacterPosition(ctx context.Context, realmID uint32, charGUID uint64, mapID uint32, x, y, z, o float32) error {
+	_, err := c.db.PreparedStatement(realmID, StmtUpdateCharacterPosition).ExecContext(ctx, mapID, x, y, z, o, charGUID)
 	if err != nil {
 		return err
 	}
 
 	return nil
+}
+
+func (c CharactersMYSQL) GetFriendsForPlayer(ctx context.Context, realmID uint32, playerGUID uint64) ([]*FriendEntry, error) {
+	rows, err := c.db.PreparedStatement(realmID, StmtGetFriendsForPlayer).QueryContext(ctx, playerGUID)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var result []*FriendEntry
+	for rows.Next() {
+		entry := &FriendEntry{PlayerGUID: playerGUID}
+		err = rows.Scan(&entry.FriendGUID, &entry.Flags, &entry.Note)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, entry)
+	}
+
+	return result, rows.Err()
+}
+
+func (c CharactersMYSQL) AddFriend(ctx context.Context, realmID uint32, playerGUID, friendGUID uint64, note string) error {
+	_, err := c.db.PreparedStatement(realmID, StmtAddFriend).ExecContext(ctx, playerGUID, friendGUID, SocialFlagFriend, note)
+	return err
+}
+
+func (c CharactersMYSQL) RemoveFriend(ctx context.Context, realmID uint32, playerGUID, friendGUID uint64) error {
+	_, err := c.db.PreparedStatement(realmID, StmtRemoveFriend).ExecContext(ctx, playerGUID, friendGUID, SocialFlagFriend)
+	return err
+}
+
+func (c CharactersMYSQL) UpdateFriendNote(ctx context.Context, realmID uint32, playerGUID, friendGUID uint64, note string) error {
+	_, err := c.db.PreparedStatement(realmID, StmtUpdateFriendNote).ExecContext(ctx, note, playerGUID, friendGUID, SocialFlagFriend)
+	return err
+}
+
+func (c CharactersMYSQL) AddIgnore(ctx context.Context, realmID uint32, playerGUID, ignoredGUID uint64) error {
+	_, err := c.db.PreparedStatement(realmID, StmtAddIgnore).ExecContext(ctx, playerGUID, ignoredGUID, SocialFlagIgnore)
+	return err
+}
+
+func (c CharactersMYSQL) RemoveIgnore(ctx context.Context, realmID uint32, playerGUID, ignoredGUID uint64) error {
+	_, err := c.db.PreparedStatement(realmID, StmtRemoveIgnore).ExecContext(ctx, playerGUID, ignoredGUID, SocialFlagIgnore)
+	return err
+}
+
+func (c CharactersMYSQL) GetPlayersWhoHaveAsFriend(ctx context.Context, realmID uint32, playerGUID uint64) ([]uint64, error) {
+	rows, err := c.db.PreparedStatement(realmID, StmtGetPlayersWhoHaveAsFriend).QueryContext(ctx, playerGUID, SocialFlagFriend)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	var result []uint64
+	for rows.Next() {
+		var guid uint64
+		err = rows.Scan(&guid)
+		if err != nil {
+			return nil, err
+		}
+		result = append(result, guid)
+	}
+
+	return result, rows.Err()
 }

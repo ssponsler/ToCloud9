@@ -19,6 +19,18 @@ service CharactersService {
 
   // Would effect only offline player.
   rpc SavePlayerPosition(SavePlayerPositionRequest) returns (SavePlayerPositionResponse);
+
+  // Friends and ignore list management
+  rpc GetFriendsList(GetFriendsListRequest) returns (GetFriendsListResponse);
+  rpc AddFriend(AddFriendRequest) returns (AddFriendResponse);
+  rpc RemoveFriend(RemoveFriendRequest) returns (RemoveFriendResponse);
+  rpc SetFriendNote(SetFriendNoteRequest) returns (SetFriendNoteResponse);
+  rpc AddIgnore(AddIgnoreRequest) returns (AddIgnoreResponse);
+  rpc RemoveIgnore(RemoveIgnoreRequest) returns (RemoveIgnoreResponse);
+  rpc NotifyStatusChange(NotifyStatusChangeRequest) returns (NotifyStatusChangeResponse);
+
+  // Get all online character GUIDs for a realm
+  rpc GetOnlineCharacters(GetOnlineCharactersRequest) returns (GetOnlineCharactersResponse);
 }
 
 // LogInCharacter is character that should be displayed on log in screen
@@ -235,8 +247,126 @@ message SavePlayerPositionRequest {
   float x = 5;
   float y = 6;
   float z = 7;
+  float o = 8;
 }
 
 message SavePlayerPositionResponse {
   string api = 1;
+}
+
+// Friends list requests and responses
+
+message GetFriendsListRequest {
+  string api = 1;
+  uint32 realmID = 2;
+  uint64 playerGUID = 3;
+}
+
+message GetFriendsListResponse {
+  string api = 1;
+
+  message Friend {
+    uint64 guid = 1;
+    string note = 2;
+    uint32 status = 3;  // 0 = offline, 1 = online
+    uint32 area = 4;    // zone ID if online
+    uint32 level = 5;
+    uint32 classID = 6;
+  }
+
+  message IgnoredPlayer {
+    uint64 guid = 1;
+  }
+
+  repeated Friend friends = 2;
+  repeated IgnoredPlayer ignored = 3;
+}
+
+message AddFriendRequest {
+  string api = 1;
+  uint32 realmID = 2;
+  uint64 playerGUID = 3;
+  uint64 friendGUID = 4;
+  string friendName = 5;
+  string note = 6;
+}
+
+message AddFriendResponse {
+  string api = 1;
+  uint32 result = 2;  // FriendsResult enum value
+  uint32 status = 3;  // 0=offline, 1=online
+  uint32 area = 4;
+  uint32 level = 5;
+  uint32 classID = 6;
+}
+
+message RemoveFriendRequest {
+  string api = 1;
+  uint32 realmID = 2;
+  uint64 playerGUID = 3;
+  uint64 friendGUID = 4;
+}
+
+message RemoveFriendResponse {
+  string api = 1;
+}
+
+message SetFriendNoteRequest {
+  string api = 1;
+  uint32 realmID = 2;
+  uint64 playerGUID = 3;
+  uint64 friendGUID = 4;
+  string note = 5;
+}
+
+message SetFriendNoteResponse {
+  string api = 1;
+}
+
+message AddIgnoreRequest {
+  string api = 1;
+  uint32 realmID = 2;
+  uint64 playerGUID = 3;
+  uint64 ignoredGUID = 4;
+}
+
+message AddIgnoreResponse {
+  string api = 1;
+  uint32 result = 2;  // FriendsResult enum value
+}
+
+message RemoveIgnoreRequest {
+  string api = 1;
+  uint32 realmID = 2;
+  uint64 playerGUID = 3;
+  uint64 ignoredGUID = 4;
+}
+
+message RemoveIgnoreResponse {
+  string api = 1;
+}
+
+message NotifyStatusChangeRequest {
+  string api = 1;
+  uint32 realmID = 2;
+  uint64 playerGUID = 3;
+  uint32 status = 4;  // 0=offline, 1=online
+  uint32 area = 5;
+  uint32 level = 6;
+  uint32 classID = 7;
+}
+
+message NotifyStatusChangeResponse {
+  string api = 1;
+}
+
+message GetOnlineCharactersRequest {
+  string api = 1;
+  uint32 realmID = 2;
+}
+
+message GetOnlineCharactersResponse {
+  string api = 1;
+  repeated uint64 characterGUIDs = 2;
+  uint32 totalCount = 3;
 }

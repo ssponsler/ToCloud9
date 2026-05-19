@@ -71,11 +71,29 @@ func main() {
 	charRepo := repo.NewCharactersMYSQL(charDB)
 
 	onlineCharsRepo := repo.NewCharactersOnlineInMem()
+
+	// Friends initialization
+	friendsOnlineCache := service.NewOnlinePlayersCache()
+	friendsEventsProducer := events.NewFriendsServiceProducerNatsJSON(nc, charserver.Ver)
+	friendsService := service.NewFriendsService(charRepo, friendsOnlineCache, friendsEventsProducer)
+	friendsOnlineCache.SetFriendsService(friendsService)
+
+	// Composite handlers to call both onlineCharsRepo and friendsOnlineCache
+	compositeLoggedInHandler := &compositeLoggedInHandler{
+		handlers: []events.GWCharacterLoggedInHandler{onlineCharsRepo, friendsOnlineCache},
+	}
+	compositeLoggedOutHandler := &compositeLoggedOutHandler{
+		handlers: []events.GWCharacterLoggedOutHandler{onlineCharsRepo, friendsOnlineCache},
+	}
+	compositeUpdatesHandler := &compositeCharsUpdatesHandler{
+		handlers: []events.GWCharactersUpdatesHandler{onlineCharsRepo, friendsOnlineCache},
+	}
+
 	gwEventsConsumer := events.NewGatewayConsumer(
 		nc,
-		events.WithGWConsumerLoggedInHandler(onlineCharsRepo),
-		events.WithGWConsumerLoggedOutHandler(onlineCharsRepo),
-		events.WithGWConsumerCharsUpdatesHandler(onlineCharsRepo),
+		events.WithGWConsumerLoggedInHandler(compositeLoggedInHandler),
+		events.WithGWConsumerLoggedOutHandler(compositeLoggedOutHandler),
+		events.WithGWConsumerCharsUpdatesHandler(compositeUpdatesHandler),
 	)
 	err = gwEventsConsumer.Listen()
 	if err != nil {
@@ -91,7 +109,7 @@ func main() {
 	defer srHandler.Stop()
 
 	grpcServer := grpc.NewServer()
-	pb.RegisterCharactersServiceServer(grpcServer, server.NewCharServer(charRepo, onlineCharsRepo, onlineCharsRepo, itemsTemplate))
+	pb.RegisterCharactersServiceServer(grpcServer, server.NewCharServer(charRepo, onlineCharsRepo, onlineCharsRepo, itemsTemplate, friendsService))
 
 	log.Info().Str("address", lis.Addr().String()).Msg("🚀 Characters Server Started!")
 
@@ -105,4 +123,46 @@ func configureDBConn(db *sql.DB) {
 	db.SetMaxOpenConns(10)
 	db.SetConnMaxLifetime(time.Minute * 4)
 	db.SetConnMaxIdleTime(time.Minute * 8)
+}
+
+// Composite handlers to call multiple event handlers
+// Needed because GatewayConsumer only supports one handler per event type
+
+type compositeLoggedInHandler struct {
+	handlers []events.GWCharacterLoggedInHandler
+}
+
+func (c *compositeLoggedInHandler) HandleCharacterLoggedIn(payload events.GWEventCharacterLoggedInPayload) error {
+	for _, h := range c.handlers {
+		if err := h.HandleCharacterLoggedIn(payload); err != nil {
+			log.Error().Err(err).Msg("composite handler: error in HandleCharacterLoggedIn")
+		}
+	}
+	return nil
+}
+
+type compositeLoggedOutHandler struct {
+	handlers []events.GWCharacterLoggedOutHandler
+}
+
+func (c *compositeLoggedOutHandler) HandleCharacterLoggedOut(payload events.GWEventCharacterLoggedOutPayload) error {
+	for _, h := range c.handlers {
+		if err := h.HandleCharacterLoggedOut(payload); err != nil {
+			log.Error().Err(err).Msg("composite handler: error in HandleCharacterLoggedOut")
+		}
+	}
+	return nil
+}
+
+type compositeCharsUpdatesHandler struct {
+	handlers []events.GWCharactersUpdatesHandler
+}
+
+func (c *compositeCharsUpdatesHandler) HandleCharactersUpdates(payload events.GWEventCharactersUpdatesPayload) error {
+	for _, h := range c.handlers {
+		if err := h.HandleCharactersUpdates(payload); err != nil {
+			log.Error().Err(err).Msg("composite handler: error in HandleCharactersUpdates")
+		}
+	}
+	return nil
 }

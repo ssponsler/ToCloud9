@@ -7,6 +7,7 @@ import (
 	"github.com/rs/zerolog/log"
 
 	"github.com/walkline/ToCloud9/apps/charserver/repo"
+	"github.com/walkline/ToCloud9/apps/charserver/service"
 	"github.com/walkline/ToCloud9/gen/characters/pb"
 )
 
@@ -16,18 +17,20 @@ const (
 
 type CharServer struct {
 	pb.UnimplementedCharactersServiceServer
-	repo          repo.Characters
-	whoHandler    repo.WhoHandler
-	itemsTemplate repo.ItemsTemplate
-	onlineChars   repo.CharactersOnline
+	repo           repo.Characters
+	whoHandler     repo.WhoHandler
+	itemsTemplate  repo.ItemsTemplate
+	onlineChars    repo.CharactersOnline
+	friendsService service.FriendsService
 }
 
-func NewCharServer(repo repo.Characters, onlineChars repo.CharactersOnline, whoHandler repo.WhoHandler, itemsTemplate repo.ItemsTemplate) pb.CharactersServiceServer {
+func NewCharServer(repo repo.Characters, onlineChars repo.CharactersOnline, whoHandler repo.WhoHandler, itemsTemplate repo.ItemsTemplate, friendsService service.FriendsService) pb.CharactersServiceServer {
 	return &CharServer{
-		repo:          repo,
-		whoHandler:    whoHandler,
-		itemsTemplate: itemsTemplate,
-		onlineChars:   onlineChars,
+		repo:           repo,
+		whoHandler:     whoHandler,
+		itemsTemplate:  itemsTemplate,
+		onlineChars:    onlineChars,
+		friendsService: friendsService,
 	}
 }
 
@@ -388,12 +391,198 @@ func (c *CharServer) ShortOnlineCharactersDataByGUIDs(ctx context.Context, reque
 }
 
 func (c *CharServer) SavePlayerPosition(ctx context.Context, request *pb.SavePlayerPositionRequest) (*pb.SavePlayerPositionResponse, error) {
-	err := c.repo.SaveCharacterPosition(ctx, request.RealmID, request.CharGUID, request.MapID, request.X, request.Y, request.Z)
+	err := c.repo.SaveCharacterPosition(ctx, request.RealmID, request.CharGUID, request.MapID, request.X, request.Y, request.Z, request.O)
 	if err != nil {
 		return nil, err
 	}
 
 	return &pb.SavePlayerPositionResponse{
 		Api: ver,
+	}, nil
+}
+
+func (c *CharServer) GetFriendsList(ctx context.Context, request *pb.GetFriendsListRequest) (*pb.GetFriendsListResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint64("playerGUID", request.PlayerGUID).
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled get friends list")
+	}(time.Now())
+
+	friendsList, err := c.friendsService.GetFriendsList(ctx, request.RealmID, request.PlayerGUID)
+	if err != nil {
+		return nil, err
+	}
+
+	friends := make([]*pb.GetFriendsListResponse_Friend, 0, len(friendsList.Friends))
+	for _, friend := range friendsList.Friends {
+		friends = append(friends, &pb.GetFriendsListResponse_Friend{
+			Guid:    friend.GUID,
+			Note:    friend.Note,
+			Status:  uint32(friend.Status),
+			Area:    friend.Area,
+			Level:   friend.Level,
+			ClassID: friend.ClassID,
+		})
+	}
+
+	ignored := make([]*pb.GetFriendsListResponse_IgnoredPlayer, 0, len(friendsList.Ignored))
+	for _, guid := range friendsList.Ignored {
+		ignored = append(ignored, &pb.GetFriendsListResponse_IgnoredPlayer{
+			Guid: guid,
+		})
+	}
+
+	return &pb.GetFriendsListResponse{
+		Api:     ver,
+		Friends: friends,
+		Ignored: ignored,
+	}, nil
+}
+
+func (c *CharServer) AddFriend(ctx context.Context, request *pb.AddFriendRequest) (*pb.AddFriendResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint64("playerGUID", request.PlayerGUID).
+			Uint64("friendGUID", request.FriendGUID).
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled add friend")
+	}(time.Now())
+
+	result, err := c.friendsService.AddFriend(ctx, request.RealmID, request.PlayerGUID, request.FriendGUID, request.FriendName, request.Note)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.AddFriendResponse{
+		Api:     ver,
+		Result:  result.Result,
+		Status:  uint32(result.Status),
+		Area:    result.Area,
+		Level:   result.Level,
+		ClassID: result.ClassID,
+	}, nil
+}
+
+func (c *CharServer) RemoveFriend(ctx context.Context, request *pb.RemoveFriendRequest) (*pb.RemoveFriendResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint64("playerGUID", request.PlayerGUID).
+			Uint64("friendGUID", request.FriendGUID).
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled remove friend")
+	}(time.Now())
+
+	err := c.friendsService.RemoveFriend(ctx, request.RealmID, request.PlayerGUID, request.FriendGUID)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.RemoveFriendResponse{
+		Api: ver,
+	}, nil
+}
+
+func (c *CharServer) SetFriendNote(ctx context.Context, request *pb.SetFriendNoteRequest) (*pb.SetFriendNoteResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint64("playerGUID", request.PlayerGUID).
+			Uint64("friendGUID", request.FriendGUID).
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled set friend note")
+	}(time.Now())
+
+	err := c.friendsService.SetFriendNote(ctx, request.RealmID, request.PlayerGUID, request.FriendGUID, request.Note)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.SetFriendNoteResponse{
+		Api: ver,
+	}, nil
+}
+
+func (c *CharServer) AddIgnore(ctx context.Context, request *pb.AddIgnoreRequest) (*pb.AddIgnoreResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint64("playerGUID", request.PlayerGUID).
+			Uint64("ignoredGUID", request.IgnoredGUID).
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled add ignore")
+	}(time.Now())
+
+	result, err := c.friendsService.AddIgnore(ctx, request.RealmID, request.PlayerGUID, request.IgnoredGUID)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.AddIgnoreResponse{
+		Api:    ver,
+		Result: result,
+	}, nil
+}
+
+func (c *CharServer) RemoveIgnore(ctx context.Context, request *pb.RemoveIgnoreRequest) (*pb.RemoveIgnoreResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint64("playerGUID", request.PlayerGUID).
+			Uint64("ignoredGUID", request.IgnoredGUID).
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled remove ignore")
+	}(time.Now())
+
+	err := c.friendsService.RemoveIgnore(ctx, request.RealmID, request.PlayerGUID, request.IgnoredGUID)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.RemoveIgnoreResponse{
+		Api: ver,
+	}, nil
+}
+
+func (c *CharServer) NotifyStatusChange(ctx context.Context, request *pb.NotifyStatusChangeRequest) (*pb.NotifyStatusChangeResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint64("playerGUID", request.PlayerGUID).
+			Uint32("status", request.Status).
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled notify status change")
+	}(time.Now())
+
+	err := c.friendsService.NotifyStatusChange(ctx, request.RealmID, request.PlayerGUID, uint8(request.Status), request.Area, request.Level, request.ClassID)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.NotifyStatusChangeResponse{
+		Api: ver,
+	}, nil
+}
+
+func (c *CharServer) GetOnlineCharacters(ctx context.Context, request *pb.GetOnlineCharactersRequest) (*pb.GetOnlineCharactersResponse, error) {
+	defer func(t time.Time) {
+		log.Debug().
+			Uint32("realmID", request.RealmID).
+			Str("timeTook", time.Since(t).String()).
+			Msg("Handled get online characters")
+	}(time.Now())
+
+	guids, err := c.onlineChars.AllGUIDsByRealm(ctx, request.RealmID)
+	if err != nil {
+		return nil, err
+	}
+
+	return &pb.GetOnlineCharactersResponse{
+		Api:             ver,
+		CharacterGUIDs:  guids,
+		TotalCount:      uint32(len(guids)),
 	}, nil
 }

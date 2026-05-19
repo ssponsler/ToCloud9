@@ -47,10 +47,31 @@ type AccountData struct {
 	Data string
 }
 
+const (
+	SocialFlagFriend uint8 = 0x01
+	SocialFlagIgnore uint8 = 0x02
+)
+
+type FriendEntry struct {
+	PlayerGUID uint64
+	FriendGUID uint64
+	Flags      uint8
+	Note       string
+}
+
 type Characters interface {
 	ListCharactersToLogIn(ctx context.Context, realmID, accountID uint32) ([]LogInCharacter, error)
 	CharacterToLogInByGUID(ctx context.Context, realmID uint32, charGUID uint64) (*LogInCharacter, error)
 	CharacterByName(ctx context.Context, realmID uint32, name string) (*Character, error)
 	AccountDataForAccountID(ctx context.Context, realmID, accountID uint32) ([]AccountData, error)
-	SaveCharacterPosition(ctx context.Context, realmID uint32, charGUID uint64, mapID uint32, x, y, z float32) error
+	SaveCharacterPosition(ctx context.Context, realmID uint32, charGUID uint64, mapID uint32, x, y, z, o float32) error
+
+	// Friends and social methods
+	GetFriendsForPlayer(ctx context.Context, realmID uint32, playerGUID uint64) ([]*FriendEntry, error)
+	AddFriend(ctx context.Context, realmID uint32, playerGUID, friendGUID uint64, note string) error
+	RemoveFriend(ctx context.Context, realmID uint32, playerGUID, friendGUID uint64) error
+	UpdateFriendNote(ctx context.Context, realmID uint32, playerGUID, friendGUID uint64, note string) error
+	AddIgnore(ctx context.Context, realmID uint32, playerGUID, ignoredGUID uint64) error
+	RemoveIgnore(ctx context.Context, realmID uint32, playerGUID, ignoredGUID uint64) error
+	GetPlayersWhoHaveAsFriend(ctx context.Context, realmID uint32, playerGUID uint64) ([]uint64, error)
 }

@@ -50,6 +50,72 @@ func (_m *CharactersServiceClient) AccountDataForAccount(ctx context.Context, in
 	return r0, r1
 }
 
+// AddFriend provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) AddFriend(ctx context.Context, in *pb.AddFriendRequest, opts ...grpc.CallOption) (*pb.AddFriendResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.AddFriendResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.AddFriendRequest, ...grpc.CallOption) (*pb.AddFriendResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.AddFriendRequest, ...grpc.CallOption) *pb.AddFriendResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.AddFriendResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.AddFriendRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// AddIgnore provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) AddIgnore(ctx context.Context, in *pb.AddIgnoreRequest, opts ...grpc.CallOption) (*pb.AddIgnoreResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.AddIgnoreResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.AddIgnoreRequest, ...grpc.CallOption) (*pb.AddIgnoreResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.AddIgnoreRequest, ...grpc.CallOption) *pb.AddIgnoreResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.AddIgnoreResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.AddIgnoreRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // CharacterByName provides a mock function with given fields: ctx, in, opts
 func (_m *CharactersServiceClient) CharacterByName(ctx context.Context, in *pb.CharacterByNameRequest, opts ...grpc.CallOption) (*pb.CharacterByNameResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -182,6 +248,171 @@ func (_m *CharactersServiceClient) CharactersToLoginForAccount(ctx context.Conte
 	return r0, r1
 }
 
+// GetFriendsList provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) GetFriendsList(ctx context.Context, in *pb.GetFriendsListRequest, opts ...grpc.CallOption) (*pb.GetFriendsListResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.GetFriendsListResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.GetFriendsListRequest, ...grpc.CallOption) (*pb.GetFriendsListResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.GetFriendsListRequest, ...grpc.CallOption) *pb.GetFriendsListResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.GetFriendsListResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.GetFriendsListRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// GetOnlineCharacters provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) GetOnlineCharacters(ctx context.Context, in *pb.GetOnlineCharactersRequest, opts ...grpc.CallOption) (*pb.GetOnlineCharactersResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.GetOnlineCharactersResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.GetOnlineCharactersRequest, ...grpc.CallOption) (*pb.GetOnlineCharactersResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.GetOnlineCharactersRequest, ...grpc.CallOption) *pb.GetOnlineCharactersResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.GetOnlineCharactersResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.GetOnlineCharactersRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// NotifyStatusChange provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) NotifyStatusChange(ctx context.Context, in *pb.NotifyStatusChangeRequest, opts ...grpc.CallOption) (*pb.NotifyStatusChangeResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.NotifyStatusChangeResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.NotifyStatusChangeRequest, ...grpc.CallOption) (*pb.NotifyStatusChangeResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.NotifyStatusChangeRequest, ...grpc.CallOption) *pb.NotifyStatusChangeResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.NotifyStatusChangeResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.NotifyStatusChangeRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// RemoveFriend provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) RemoveFriend(ctx context.Context, in *pb.RemoveFriendRequest, opts ...grpc.CallOption) (*pb.RemoveFriendResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.RemoveFriendResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.RemoveFriendRequest, ...grpc.CallOption) (*pb.RemoveFriendResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.RemoveFriendRequest, ...grpc.CallOption) *pb.RemoveFriendResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.RemoveFriendResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.RemoveFriendRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// RemoveIgnore provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) RemoveIgnore(ctx context.Context, in *pb.RemoveIgnoreRequest, opts ...grpc.CallOption) (*pb.RemoveIgnoreResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.RemoveIgnoreResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.RemoveIgnoreRequest, ...grpc.CallOption) (*pb.RemoveIgnoreResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.RemoveIgnoreRequest, ...grpc.CallOption) *pb.RemoveIgnoreResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.RemoveIgnoreResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.RemoveIgnoreRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
 // SavePlayerPosition provides a mock function with given fields: ctx, in, opts
 func (_m *CharactersServiceClient) SavePlayerPosition(ctx context.Context, in *pb.SavePlayerPositionRequest, opts ...grpc.CallOption) (*pb.SavePlayerPositionResponse, error) {
 	_va := make([]interface{}, len(opts))
@@ -207,6 +438,39 @@ func (_m *CharactersServiceClient) SavePlayerPosition(ctx context.Context, in *p
 	}
 
 	if rf, ok := ret.Get(1).(func(context.Context, *pb.SavePlayerPositionRequest, ...grpc.CallOption) error); ok {
+		r1 = rf(ctx, in, opts...)
+	} else {
+		r1 = ret.Error(1)
+	}
+
+	return r0, r1
+}
+
+// SetFriendNote provides a mock function with given fields: ctx, in, opts
+func (_m *CharactersServiceClient) SetFriendNote(ctx context.Context, in *pb.SetFriendNoteRequest, opts ...grpc.CallOption) (*pb.SetFriendNoteResponse, error) {
+	_va := make([]interface{}, len(opts))
+	for _i := range opts {
+		_va[_i] = opts[_i]
+	}
+	var _ca []interface{}
+	_ca = append(_ca, ctx, in)
+	_ca = append(_ca, _va...)
+	ret := _m.Called(_ca...)
+
+	var r0 *pb.SetFriendNoteResponse
+	var r1 error
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.SetFriendNoteRequest, ...grpc.CallOption) (*pb.SetFriendNoteResponse, error)); ok {
+		return rf(ctx, in, opts...)
+	}
+	if rf, ok := ret.Get(0).(func(context.Context, *pb.SetFriendNoteRequest, ...grpc.CallOption) *pb.SetFriendNoteResponse); ok {
+		r0 = rf(ctx, in, opts...)
+	} else {
+		if ret.Get(0) != nil {
+			r0 = ret.Get(0).(*pb.SetFriendNoteResponse)
+		}
+	}
+
+	if rf, ok := ret.Get(1).(func(context.Context, *pb.SetFriendNoteRequest, ...grpc.CallOption) error); ok {
 		r1 = rf(ctx, in, opts...)
 	} else {
 		r1 = ret.Error(1)

@@ -20,6 +20,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type TeamID int32
+
+const (
+	TeamID_TEAM_ALLIANCE TeamID = 0
+	TeamID_TEAM_HORDE    TeamID = 1
+	TeamID_TEAM_NEUTRAL  TeamID = 2
+)
+
+// Enum value maps for TeamID.
+var (
+	TeamID_name = map[int32]string{
+		0: "TEAM_ALLIANCE",
+		1: "TEAM_HORDE",
+		2: "TEAM_NEUTRAL",
+	}
+	TeamID_value = map[string]int32{
+		"TEAM_ALLIANCE": 0,
+		"TEAM_HORDE":    1,
+		"TEAM_NEUTRAL":  2,
+	}
+)
+
+func (x TeamID) Enum() *TeamID {
+	p := new(TeamID)
+	*p = x
+	return p
+}
+
+func (x TeamID) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (TeamID) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[0].Descriptor()
+}
+
+func (TeamID) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[0]
+}
+
+func (x TeamID) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use TeamID.Descriptor instead.
+func (TeamID) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{0}
+}
+
 type SendWhisperMessageResponse_Status int32
 
 const (
@@ -50,11 +99,11 @@ func (x SendWhisperMessageResponse_Status) String() string {
 }
 
 func (SendWhisperMessageResponse_Status) Descriptor() protoreflect.EnumDescriptor {
-	return file_chat_proto_enumTypes[0].Descriptor()
+	return file_chat_proto_enumTypes[1].Descriptor()
 }
 
 func (SendWhisperMessageResponse_Status) Type() protoreflect.EnumType {
-	return &file_chat_proto_enumTypes[0]
+	return &file_chat_proto_enumTypes[1]
 }
 
 func (x SendWhisperMessageResponse_Status) Number() protoreflect.EnumNumber {
@@ -64,6 +113,829 @@ func (x SendWhisperMessageResponse_Status) Number() protoreflect.EnumNumber {
 // Deprecated: Use SendWhisperMessageResponse_Status.Descriptor instead.
 func (SendWhisperMessageResponse_Status) EnumDescriptor() ([]byte, []int) {
 	return file_chat_proto_rawDescGZIP(), []int{1, 0}
+}
+
+type JoinChannelResponse_Status int32
+
+const (
+	JoinChannelResponse_Ok            JoinChannelResponse_Status = 0
+	JoinChannelResponse_WrongPassword JoinChannelResponse_Status = 1
+	JoinChannelResponse_Banned        JoinChannelResponse_Status = 2
+	JoinChannelResponse_WrongFaction  JoinChannelResponse_Status = 3
+	JoinChannelResponse_NotInArea     JoinChannelResponse_Status = 4
+	JoinChannelResponse_Throttled     JoinChannelResponse_Status = 5
+)
+
+// Enum value maps for JoinChannelResponse_Status.
+var (
+	JoinChannelResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "WrongPassword",
+		2: "Banned",
+		3: "WrongFaction",
+		4: "NotInArea",
+		5: "Throttled",
+	}
+	JoinChannelResponse_Status_value = map[string]int32{
+		"Ok":            0,
+		"WrongPassword": 1,
+		"Banned":        2,
+		"WrongFaction":  3,
+		"NotInArea":     4,
+		"Throttled":     5,
+	}
+)
+
+func (x JoinChannelResponse_Status) Enum() *JoinChannelResponse_Status {
+	p := new(JoinChannelResponse_Status)
+	*p = x
+	return p
+}
+
+func (x JoinChannelResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (JoinChannelResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[2].Descriptor()
+}
+
+func (JoinChannelResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[2]
+}
+
+func (x JoinChannelResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use JoinChannelResponse_Status.Descriptor instead.
+func (JoinChannelResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{3, 0}
+}
+
+type LeaveChannelResponse_Status int32
+
+const (
+	LeaveChannelResponse_Ok        LeaveChannelResponse_Status = 0
+	LeaveChannelResponse_NotMember LeaveChannelResponse_Status = 1
+)
+
+// Enum value maps for LeaveChannelResponse_Status.
+var (
+	LeaveChannelResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+	}
+	LeaveChannelResponse_Status_value = map[string]int32{
+		"Ok":        0,
+		"NotMember": 1,
+	}
+)
+
+func (x LeaveChannelResponse_Status) Enum() *LeaveChannelResponse_Status {
+	p := new(LeaveChannelResponse_Status)
+	*p = x
+	return p
+}
+
+func (x LeaveChannelResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (LeaveChannelResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[3].Descriptor()
+}
+
+func (LeaveChannelResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[3]
+}
+
+func (x LeaveChannelResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use LeaveChannelResponse_Status.Descriptor instead.
+func (LeaveChannelResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{5, 0}
+}
+
+type SendChannelMessageResponse_Status int32
+
+const (
+	SendChannelMessageResponse_Ok        SendChannelMessageResponse_Status = 0
+	SendChannelMessageResponse_NotMember SendChannelMessageResponse_Status = 1
+	SendChannelMessageResponse_Muted     SendChannelMessageResponse_Status = 2
+	SendChannelMessageResponse_Throttled SendChannelMessageResponse_Status = 3
+)
+
+// Enum value maps for SendChannelMessageResponse_Status.
+var (
+	SendChannelMessageResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "Muted",
+		3: "Throttled",
+	}
+	SendChannelMessageResponse_Status_value = map[string]int32{
+		"Ok":        0,
+		"NotMember": 1,
+		"Muted":     2,
+		"Throttled": 3,
+	}
+)
+
+func (x SendChannelMessageResponse_Status) Enum() *SendChannelMessageResponse_Status {
+	p := new(SendChannelMessageResponse_Status)
+	*p = x
+	return p
+}
+
+func (x SendChannelMessageResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SendChannelMessageResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[4].Descriptor()
+}
+
+func (SendChannelMessageResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[4]
+}
+
+func (x SendChannelMessageResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SendChannelMessageResponse_Status.Descriptor instead.
+func (SendChannelMessageResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{7, 0}
+}
+
+type GetChannelListResponse_Status int32
+
+const (
+	GetChannelListResponse_Ok        GetChannelListResponse_Status = 0
+	GetChannelListResponse_NotMember GetChannelListResponse_Status = 1
+)
+
+// Enum value maps for GetChannelListResponse_Status.
+var (
+	GetChannelListResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+	}
+	GetChannelListResponse_Status_value = map[string]int32{
+		"Ok":        0,
+		"NotMember": 1,
+	}
+)
+
+func (x GetChannelListResponse_Status) Enum() *GetChannelListResponse_Status {
+	p := new(GetChannelListResponse_Status)
+	*p = x
+	return p
+}
+
+func (x GetChannelListResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (GetChannelListResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[5].Descriptor()
+}
+
+func (GetChannelListResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[5]
+}
+
+func (x GetChannelListResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use GetChannelListResponse_Status.Descriptor instead.
+func (GetChannelListResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{9, 0}
+}
+
+type KickFromChannelResponse_Status int32
+
+const (
+	KickFromChannelResponse_Ok             KickFromChannelResponse_Status = 0
+	KickFromChannelResponse_NotMember      KickFromChannelResponse_Status = 1
+	KickFromChannelResponse_NotModerator   KickFromChannelResponse_Status = 2
+	KickFromChannelResponse_PlayerNotFound KickFromChannelResponse_Status = 3
+)
+
+// Enum value maps for KickFromChannelResponse_Status.
+var (
+	KickFromChannelResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotModerator",
+		3: "PlayerNotFound",
+	}
+	KickFromChannelResponse_Status_value = map[string]int32{
+		"Ok":             0,
+		"NotMember":      1,
+		"NotModerator":   2,
+		"PlayerNotFound": 3,
+	}
+)
+
+func (x KickFromChannelResponse_Status) Enum() *KickFromChannelResponse_Status {
+	p := new(KickFromChannelResponse_Status)
+	*p = x
+	return p
+}
+
+func (x KickFromChannelResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (KickFromChannelResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[6].Descriptor()
+}
+
+func (KickFromChannelResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[6]
+}
+
+func (x KickFromChannelResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use KickFromChannelResponse_Status.Descriptor instead.
+func (KickFromChannelResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{11, 0}
+}
+
+type BanFromChannelResponse_Status int32
+
+const (
+	BanFromChannelResponse_Ok             BanFromChannelResponse_Status = 0
+	BanFromChannelResponse_NotMember      BanFromChannelResponse_Status = 1
+	BanFromChannelResponse_NotModerator   BanFromChannelResponse_Status = 2
+	BanFromChannelResponse_PlayerNotFound BanFromChannelResponse_Status = 3
+)
+
+// Enum value maps for BanFromChannelResponse_Status.
+var (
+	BanFromChannelResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotModerator",
+		3: "PlayerNotFound",
+	}
+	BanFromChannelResponse_Status_value = map[string]int32{
+		"Ok":             0,
+		"NotMember":      1,
+		"NotModerator":   2,
+		"PlayerNotFound": 3,
+	}
+)
+
+func (x BanFromChannelResponse_Status) Enum() *BanFromChannelResponse_Status {
+	p := new(BanFromChannelResponse_Status)
+	*p = x
+	return p
+}
+
+func (x BanFromChannelResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (BanFromChannelResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[7].Descriptor()
+}
+
+func (BanFromChannelResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[7]
+}
+
+func (x BanFromChannelResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use BanFromChannelResponse_Status.Descriptor instead.
+func (BanFromChannelResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{13, 0}
+}
+
+type UnbanFromChannelResponse_Status int32
+
+const (
+	UnbanFromChannelResponse_Ok              UnbanFromChannelResponse_Status = 0
+	UnbanFromChannelResponse_NotMember       UnbanFromChannelResponse_Status = 1
+	UnbanFromChannelResponse_NotModerator    UnbanFromChannelResponse_Status = 2
+	UnbanFromChannelResponse_PlayerNotBanned UnbanFromChannelResponse_Status = 3
+)
+
+// Enum value maps for UnbanFromChannelResponse_Status.
+var (
+	UnbanFromChannelResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotModerator",
+		3: "PlayerNotBanned",
+	}
+	UnbanFromChannelResponse_Status_value = map[string]int32{
+		"Ok":              0,
+		"NotMember":       1,
+		"NotModerator":    2,
+		"PlayerNotBanned": 3,
+	}
+)
+
+func (x UnbanFromChannelResponse_Status) Enum() *UnbanFromChannelResponse_Status {
+	p := new(UnbanFromChannelResponse_Status)
+	*p = x
+	return p
+}
+
+func (x UnbanFromChannelResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UnbanFromChannelResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[8].Descriptor()
+}
+
+func (UnbanFromChannelResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[8]
+}
+
+func (x UnbanFromChannelResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UnbanFromChannelResponse_Status.Descriptor instead.
+func (UnbanFromChannelResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{15, 0}
+}
+
+type SetChannelModeratorResponse_Status int32
+
+const (
+	SetChannelModeratorResponse_Ok             SetChannelModeratorResponse_Status = 0
+	SetChannelModeratorResponse_NotMember      SetChannelModeratorResponse_Status = 1
+	SetChannelModeratorResponse_NotOwner       SetChannelModeratorResponse_Status = 2
+	SetChannelModeratorResponse_PlayerNotFound SetChannelModeratorResponse_Status = 3
+)
+
+// Enum value maps for SetChannelModeratorResponse_Status.
+var (
+	SetChannelModeratorResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotOwner",
+		3: "PlayerNotFound",
+	}
+	SetChannelModeratorResponse_Status_value = map[string]int32{
+		"Ok":             0,
+		"NotMember":      1,
+		"NotOwner":       2,
+		"PlayerNotFound": 3,
+	}
+)
+
+func (x SetChannelModeratorResponse_Status) Enum() *SetChannelModeratorResponse_Status {
+	p := new(SetChannelModeratorResponse_Status)
+	*p = x
+	return p
+}
+
+func (x SetChannelModeratorResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SetChannelModeratorResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[9].Descriptor()
+}
+
+func (SetChannelModeratorResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[9]
+}
+
+func (x SetChannelModeratorResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SetChannelModeratorResponse_Status.Descriptor instead.
+func (SetChannelModeratorResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{17, 0}
+}
+
+type UnsetChannelModeratorResponse_Status int32
+
+const (
+	UnsetChannelModeratorResponse_Ok             UnsetChannelModeratorResponse_Status = 0
+	UnsetChannelModeratorResponse_NotMember      UnsetChannelModeratorResponse_Status = 1
+	UnsetChannelModeratorResponse_NotOwner       UnsetChannelModeratorResponse_Status = 2
+	UnsetChannelModeratorResponse_PlayerNotFound UnsetChannelModeratorResponse_Status = 3
+)
+
+// Enum value maps for UnsetChannelModeratorResponse_Status.
+var (
+	UnsetChannelModeratorResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotOwner",
+		3: "PlayerNotFound",
+	}
+	UnsetChannelModeratorResponse_Status_value = map[string]int32{
+		"Ok":             0,
+		"NotMember":      1,
+		"NotOwner":       2,
+		"PlayerNotFound": 3,
+	}
+)
+
+func (x UnsetChannelModeratorResponse_Status) Enum() *UnsetChannelModeratorResponse_Status {
+	p := new(UnsetChannelModeratorResponse_Status)
+	*p = x
+	return p
+}
+
+func (x UnsetChannelModeratorResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UnsetChannelModeratorResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[10].Descriptor()
+}
+
+func (UnsetChannelModeratorResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[10]
+}
+
+func (x UnsetChannelModeratorResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UnsetChannelModeratorResponse_Status.Descriptor instead.
+func (UnsetChannelModeratorResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{19, 0}
+}
+
+type SetChannelMuteResponse_Status int32
+
+const (
+	SetChannelMuteResponse_Ok             SetChannelMuteResponse_Status = 0
+	SetChannelMuteResponse_NotMember      SetChannelMuteResponse_Status = 1
+	SetChannelMuteResponse_NotModerator   SetChannelMuteResponse_Status = 2
+	SetChannelMuteResponse_PlayerNotFound SetChannelMuteResponse_Status = 3
+)
+
+// Enum value maps for SetChannelMuteResponse_Status.
+var (
+	SetChannelMuteResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotModerator",
+		3: "PlayerNotFound",
+	}
+	SetChannelMuteResponse_Status_value = map[string]int32{
+		"Ok":             0,
+		"NotMember":      1,
+		"NotModerator":   2,
+		"PlayerNotFound": 3,
+	}
+)
+
+func (x SetChannelMuteResponse_Status) Enum() *SetChannelMuteResponse_Status {
+	p := new(SetChannelMuteResponse_Status)
+	*p = x
+	return p
+}
+
+func (x SetChannelMuteResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SetChannelMuteResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[11].Descriptor()
+}
+
+func (SetChannelMuteResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[11]
+}
+
+func (x SetChannelMuteResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SetChannelMuteResponse_Status.Descriptor instead.
+func (SetChannelMuteResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{21, 0}
+}
+
+type UnsetChannelMuteResponse_Status int32
+
+const (
+	UnsetChannelMuteResponse_Ok             UnsetChannelMuteResponse_Status = 0
+	UnsetChannelMuteResponse_NotMember      UnsetChannelMuteResponse_Status = 1
+	UnsetChannelMuteResponse_NotModerator   UnsetChannelMuteResponse_Status = 2
+	UnsetChannelMuteResponse_PlayerNotFound UnsetChannelMuteResponse_Status = 3
+)
+
+// Enum value maps for UnsetChannelMuteResponse_Status.
+var (
+	UnsetChannelMuteResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotModerator",
+		3: "PlayerNotFound",
+	}
+	UnsetChannelMuteResponse_Status_value = map[string]int32{
+		"Ok":             0,
+		"NotMember":      1,
+		"NotModerator":   2,
+		"PlayerNotFound": 3,
+	}
+)
+
+func (x UnsetChannelMuteResponse_Status) Enum() *UnsetChannelMuteResponse_Status {
+	p := new(UnsetChannelMuteResponse_Status)
+	*p = x
+	return p
+}
+
+func (x UnsetChannelMuteResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UnsetChannelMuteResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[12].Descriptor()
+}
+
+func (UnsetChannelMuteResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[12]
+}
+
+func (x UnsetChannelMuteResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UnsetChannelMuteResponse_Status.Descriptor instead.
+func (UnsetChannelMuteResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{23, 0}
+}
+
+type SetChannelOwnerResponse_Status int32
+
+const (
+	SetChannelOwnerResponse_Ok             SetChannelOwnerResponse_Status = 0
+	SetChannelOwnerResponse_NotMember      SetChannelOwnerResponse_Status = 1
+	SetChannelOwnerResponse_NotOwner       SetChannelOwnerResponse_Status = 2
+	SetChannelOwnerResponse_PlayerNotFound SetChannelOwnerResponse_Status = 3
+)
+
+// Enum value maps for SetChannelOwnerResponse_Status.
+var (
+	SetChannelOwnerResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotOwner",
+		3: "PlayerNotFound",
+	}
+	SetChannelOwnerResponse_Status_value = map[string]int32{
+		"Ok":             0,
+		"NotMember":      1,
+		"NotOwner":       2,
+		"PlayerNotFound": 3,
+	}
+)
+
+func (x SetChannelOwnerResponse_Status) Enum() *SetChannelOwnerResponse_Status {
+	p := new(SetChannelOwnerResponse_Status)
+	*p = x
+	return p
+}
+
+func (x SetChannelOwnerResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SetChannelOwnerResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[13].Descriptor()
+}
+
+func (SetChannelOwnerResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[13]
+}
+
+func (x SetChannelOwnerResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SetChannelOwnerResponse_Status.Descriptor instead.
+func (SetChannelOwnerResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{25, 0}
+}
+
+type SetChannelPasswordResponse_Status int32
+
+const (
+	SetChannelPasswordResponse_Ok        SetChannelPasswordResponse_Status = 0
+	SetChannelPasswordResponse_NotMember SetChannelPasswordResponse_Status = 1
+	SetChannelPasswordResponse_NotOwner  SetChannelPasswordResponse_Status = 2
+)
+
+// Enum value maps for SetChannelPasswordResponse_Status.
+var (
+	SetChannelPasswordResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotOwner",
+	}
+	SetChannelPasswordResponse_Status_value = map[string]int32{
+		"Ok":        0,
+		"NotMember": 1,
+		"NotOwner":  2,
+	}
+)
+
+func (x SetChannelPasswordResponse_Status) Enum() *SetChannelPasswordResponse_Status {
+	p := new(SetChannelPasswordResponse_Status)
+	*p = x
+	return p
+}
+
+func (x SetChannelPasswordResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (SetChannelPasswordResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[14].Descriptor()
+}
+
+func (SetChannelPasswordResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[14]
+}
+
+func (x SetChannelPasswordResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use SetChannelPasswordResponse_Status.Descriptor instead.
+func (SetChannelPasswordResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{27, 0}
+}
+
+type ToggleChannelModerationResponse_Status int32
+
+const (
+	ToggleChannelModerationResponse_Ok           ToggleChannelModerationResponse_Status = 0
+	ToggleChannelModerationResponse_NotMember    ToggleChannelModerationResponse_Status = 1
+	ToggleChannelModerationResponse_NotModerator ToggleChannelModerationResponse_Status = 2
+)
+
+// Enum value maps for ToggleChannelModerationResponse_Status.
+var (
+	ToggleChannelModerationResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotModerator",
+	}
+	ToggleChannelModerationResponse_Status_value = map[string]int32{
+		"Ok":           0,
+		"NotMember":    1,
+		"NotModerator": 2,
+	}
+)
+
+func (x ToggleChannelModerationResponse_Status) Enum() *ToggleChannelModerationResponse_Status {
+	p := new(ToggleChannelModerationResponse_Status)
+	*p = x
+	return p
+}
+
+func (x ToggleChannelModerationResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ToggleChannelModerationResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[15].Descriptor()
+}
+
+func (ToggleChannelModerationResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[15]
+}
+
+func (x ToggleChannelModerationResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ToggleChannelModerationResponse_Status.Descriptor instead.
+func (ToggleChannelModerationResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{29, 0}
+}
+
+type ToggleChannelAnnouncementsResponse_Status int32
+
+const (
+	ToggleChannelAnnouncementsResponse_Ok           ToggleChannelAnnouncementsResponse_Status = 0
+	ToggleChannelAnnouncementsResponse_NotMember    ToggleChannelAnnouncementsResponse_Status = 1
+	ToggleChannelAnnouncementsResponse_NotModerator ToggleChannelAnnouncementsResponse_Status = 2
+)
+
+// Enum value maps for ToggleChannelAnnouncementsResponse_Status.
+var (
+	ToggleChannelAnnouncementsResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "NotModerator",
+	}
+	ToggleChannelAnnouncementsResponse_Status_value = map[string]int32{
+		"Ok":           0,
+		"NotMember":    1,
+		"NotModerator": 2,
+	}
+)
+
+func (x ToggleChannelAnnouncementsResponse_Status) Enum() *ToggleChannelAnnouncementsResponse_Status {
+	p := new(ToggleChannelAnnouncementsResponse_Status)
+	*p = x
+	return p
+}
+
+func (x ToggleChannelAnnouncementsResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (ToggleChannelAnnouncementsResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[16].Descriptor()
+}
+
+func (ToggleChannelAnnouncementsResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[16]
+}
+
+func (x ToggleChannelAnnouncementsResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use ToggleChannelAnnouncementsResponse_Status.Descriptor instead.
+func (ToggleChannelAnnouncementsResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{31, 0}
+}
+
+type InviteToChannelResponse_Status int32
+
+const (
+	InviteToChannelResponse_Ok                  InviteToChannelResponse_Status = 0
+	InviteToChannelResponse_NotMember           InviteToChannelResponse_Status = 1
+	InviteToChannelResponse_PlayerNotFound      InviteToChannelResponse_Status = 2
+	InviteToChannelResponse_PlayerAlreadyMember InviteToChannelResponse_Status = 3
+	InviteToChannelResponse_WrongFaction        InviteToChannelResponse_Status = 4
+	InviteToChannelResponse_PlayerBanned        InviteToChannelResponse_Status = 5
+)
+
+// Enum value maps for InviteToChannelResponse_Status.
+var (
+	InviteToChannelResponse_Status_name = map[int32]string{
+		0: "Ok",
+		1: "NotMember",
+		2: "PlayerNotFound",
+		3: "PlayerAlreadyMember",
+		4: "WrongFaction",
+		5: "PlayerBanned",
+	}
+	InviteToChannelResponse_Status_value = map[string]int32{
+		"Ok":                  0,
+		"NotMember":           1,
+		"PlayerNotFound":      2,
+		"PlayerAlreadyMember": 3,
+		"WrongFaction":        4,
+		"PlayerBanned":        5,
+	}
+)
+
+func (x InviteToChannelResponse_Status) Enum() *InviteToChannelResponse_Status {
+	p := new(InviteToChannelResponse_Status)
+	*p = x
+	return p
+}
+
+func (x InviteToChannelResponse_Status) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (InviteToChannelResponse_Status) Descriptor() protoreflect.EnumDescriptor {
+	return file_chat_proto_enumTypes[17].Descriptor()
+}
+
+func (InviteToChannelResponse_Status) Type() protoreflect.EnumType {
+	return &file_chat_proto_enumTypes[17]
+}
+
+func (x InviteToChannelResponse_Status) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use InviteToChannelResponse_Status.Descriptor instead.
+func (InviteToChannelResponse_Status) EnumDescriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{33, 0}
 }
 
 type SendWhisperMessageRequest struct {
@@ -232,6 +1104,2460 @@ func (x *SendWhisperMessageResponse) GetReceiverGUID() uint64 {
 	return 0
 }
 
+type JoinChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api          string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID      uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	PlayerGUID   uint64 `protobuf:"varint,3,opt,name=playerGUID,proto3" json:"playerGUID,omitempty"`
+	PlayerName   string `protobuf:"bytes,4,opt,name=playerName,proto3" json:"playerName,omitempty"`
+	TeamID       TeamID `protobuf:"varint,5,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+	ChannelName  string `protobuf:"bytes,6,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	ChannelID    uint32 `protobuf:"varint,7,opt,name=channelID,proto3" json:"channelID,omitempty"` // 0 for custom channels, or worldserver's ID for territorial
+	Password     string `protobuf:"bytes,8,opt,name=password,proto3" json:"password,omitempty"`
+	ChannelFlags uint32 `protobuf:"varint,9,opt,name=channelFlags,proto3" json:"channelFlags,omitempty"` // 0 to auto-detect, or worldserver's flags for territorial
+}
+
+func (x *JoinChannelRequest) Reset() {
+	*x = JoinChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[2]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *JoinChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JoinChannelRequest) ProtoMessage() {}
+
+func (x *JoinChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[2]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JoinChannelRequest.ProtoReflect.Descriptor instead.
+func (*JoinChannelRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *JoinChannelRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *JoinChannelRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *JoinChannelRequest) GetPlayerGUID() uint64 {
+	if x != nil {
+		return x.PlayerGUID
+	}
+	return 0
+}
+
+func (x *JoinChannelRequest) GetPlayerName() string {
+	if x != nil {
+		return x.PlayerName
+	}
+	return ""
+}
+
+func (x *JoinChannelRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+func (x *JoinChannelRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *JoinChannelRequest) GetChannelID() uint32 {
+	if x != nil {
+		return x.ChannelID
+	}
+	return 0
+}
+
+func (x *JoinChannelRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+func (x *JoinChannelRequest) GetChannelFlags() uint32 {
+	if x != nil {
+		return x.ChannelFlags
+	}
+	return 0
+}
+
+type JoinChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api     string                     `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status  JoinChannelResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.JoinChannelResponse_Status" json:"status,omitempty"`
+	Channel *ChannelInfo               `protobuf:"bytes,3,opt,name=channel,proto3" json:"channel,omitempty"`
+}
+
+func (x *JoinChannelResponse) Reset() {
+	*x = JoinChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[3]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *JoinChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*JoinChannelResponse) ProtoMessage() {}
+
+func (x *JoinChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[3]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use JoinChannelResponse.ProtoReflect.Descriptor instead.
+func (*JoinChannelResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *JoinChannelResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *JoinChannelResponse) GetStatus() JoinChannelResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return JoinChannelResponse_Ok
+}
+
+func (x *JoinChannelResponse) GetChannel() *ChannelInfo {
+	if x != nil {
+		return x.Channel
+	}
+	return nil
+}
+
+type LeaveChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	PlayerGUID  uint64 `protobuf:"varint,3,opt,name=playerGUID,proto3" json:"playerGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,5,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *LeaveChannelRequest) Reset() {
+	*x = LeaveChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[4]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LeaveChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LeaveChannelRequest) ProtoMessage() {}
+
+func (x *LeaveChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[4]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LeaveChannelRequest.ProtoReflect.Descriptor instead.
+func (*LeaveChannelRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *LeaveChannelRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *LeaveChannelRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *LeaveChannelRequest) GetPlayerGUID() uint64 {
+	if x != nil {
+		return x.PlayerGUID
+	}
+	return 0
+}
+
+func (x *LeaveChannelRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *LeaveChannelRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type LeaveChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                      `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status LeaveChannelResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.LeaveChannelResponse_Status" json:"status,omitempty"`
+}
+
+func (x *LeaveChannelResponse) Reset() {
+	*x = LeaveChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *LeaveChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*LeaveChannelResponse) ProtoMessage() {}
+
+func (x *LeaveChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use LeaveChannelResponse.ProtoReflect.Descriptor instead.
+func (*LeaveChannelResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *LeaveChannelResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *LeaveChannelResponse) GetStatus() LeaveChannelResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return LeaveChannelResponse_Ok
+}
+
+type SendChannelMessageRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	SenderGUID  uint64 `protobuf:"varint,3,opt,name=senderGUID,proto3" json:"senderGUID,omitempty"`
+	SenderName  string `protobuf:"bytes,4,opt,name=senderName,proto3" json:"senderName,omitempty"`
+	ChannelName string `protobuf:"bytes,5,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	Language    uint32 `protobuf:"varint,6,opt,name=language,proto3" json:"language,omitempty"`
+	Message     string `protobuf:"bytes,7,opt,name=message,proto3" json:"message,omitempty"`
+	TeamID      TeamID `protobuf:"varint,8,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *SendChannelMessageRequest) Reset() {
+	*x = SendChannelMessageRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SendChannelMessageRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SendChannelMessageRequest) ProtoMessage() {}
+
+func (x *SendChannelMessageRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SendChannelMessageRequest.ProtoReflect.Descriptor instead.
+func (*SendChannelMessageRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *SendChannelMessageRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SendChannelMessageRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *SendChannelMessageRequest) GetSenderGUID() uint64 {
+	if x != nil {
+		return x.SenderGUID
+	}
+	return 0
+}
+
+func (x *SendChannelMessageRequest) GetSenderName() string {
+	if x != nil {
+		return x.SenderName
+	}
+	return ""
+}
+
+func (x *SendChannelMessageRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *SendChannelMessageRequest) GetLanguage() uint32 {
+	if x != nil {
+		return x.Language
+	}
+	return 0
+}
+
+func (x *SendChannelMessageRequest) GetMessage() string {
+	if x != nil {
+		return x.Message
+	}
+	return ""
+}
+
+func (x *SendChannelMessageRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type SendChannelMessageResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                            `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status SendChannelMessageResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.SendChannelMessageResponse_Status" json:"status,omitempty"`
+}
+
+func (x *SendChannelMessageResponse) Reset() {
+	*x = SendChannelMessageResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[7]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SendChannelMessageResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SendChannelMessageResponse) ProtoMessage() {}
+
+func (x *SendChannelMessageResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[7]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SendChannelMessageResponse.ProtoReflect.Descriptor instead.
+func (*SendChannelMessageResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *SendChannelMessageResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SendChannelMessageResponse) GetStatus() SendChannelMessageResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return SendChannelMessageResponse_Ok
+}
+
+type GetChannelListRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	PlayerGUID  uint64 `protobuf:"varint,3,opt,name=playerGUID,proto3" json:"playerGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,5,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *GetChannelListRequest) Reset() {
+	*x = GetChannelListRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[8]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetChannelListRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChannelListRequest) ProtoMessage() {}
+
+func (x *GetChannelListRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[8]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChannelListRequest.ProtoReflect.Descriptor instead.
+func (*GetChannelListRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetChannelListRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *GetChannelListRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *GetChannelListRequest) GetPlayerGUID() uint64 {
+	if x != nil {
+		return x.PlayerGUID
+	}
+	return 0
+}
+
+func (x *GetChannelListRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *GetChannelListRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type GetChannelListResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api     string                        `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status  GetChannelListResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.GetChannelListResponse_Status" json:"status,omitempty"`
+	Members []*ChannelMember              `protobuf:"bytes,3,rep,name=members,proto3" json:"members,omitempty"`
+}
+
+func (x *GetChannelListResponse) Reset() {
+	*x = GetChannelListResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[9]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetChannelListResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetChannelListResponse) ProtoMessage() {}
+
+func (x *GetChannelListResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[9]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetChannelListResponse.ProtoReflect.Descriptor instead.
+func (*GetChannelListResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{9}
+}
+
+func (x *GetChannelListResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *GetChannelListResponse) GetStatus() GetChannelListResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return GetChannelListResponse_Ok
+}
+
+func (x *GetChannelListResponse) GetMembers() []*ChannelMember {
+	if x != nil {
+		return x.Members
+	}
+	return nil
+}
+
+type KickFromChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	KickerGUID  uint64 `protobuf:"varint,3,opt,name=kickerGUID,proto3" json:"kickerGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *KickFromChannelRequest) Reset() {
+	*x = KickFromChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[10]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *KickFromChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KickFromChannelRequest) ProtoMessage() {}
+
+func (x *KickFromChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[10]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KickFromChannelRequest.ProtoReflect.Descriptor instead.
+func (*KickFromChannelRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *KickFromChannelRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *KickFromChannelRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *KickFromChannelRequest) GetKickerGUID() uint64 {
+	if x != nil {
+		return x.KickerGUID
+	}
+	return 0
+}
+
+func (x *KickFromChannelRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *KickFromChannelRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *KickFromChannelRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type KickFromChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                         `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status KickFromChannelResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.KickFromChannelResponse_Status" json:"status,omitempty"`
+}
+
+func (x *KickFromChannelResponse) Reset() {
+	*x = KickFromChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[11]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *KickFromChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*KickFromChannelResponse) ProtoMessage() {}
+
+func (x *KickFromChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[11]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use KickFromChannelResponse.ProtoReflect.Descriptor instead.
+func (*KickFromChannelResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *KickFromChannelResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *KickFromChannelResponse) GetStatus() KickFromChannelResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return KickFromChannelResponse_Ok
+}
+
+type BanFromChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	BannerGUID  uint64 `protobuf:"varint,3,opt,name=bannerGUID,proto3" json:"bannerGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *BanFromChannelRequest) Reset() {
+	*x = BanFromChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[12]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BanFromChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BanFromChannelRequest) ProtoMessage() {}
+
+func (x *BanFromChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[12]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BanFromChannelRequest.ProtoReflect.Descriptor instead.
+func (*BanFromChannelRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{12}
+}
+
+func (x *BanFromChannelRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *BanFromChannelRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *BanFromChannelRequest) GetBannerGUID() uint64 {
+	if x != nil {
+		return x.BannerGUID
+	}
+	return 0
+}
+
+func (x *BanFromChannelRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *BanFromChannelRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *BanFromChannelRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type BanFromChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                        `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status BanFromChannelResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.BanFromChannelResponse_Status" json:"status,omitempty"`
+}
+
+func (x *BanFromChannelResponse) Reset() {
+	*x = BanFromChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[13]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *BanFromChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*BanFromChannelResponse) ProtoMessage() {}
+
+func (x *BanFromChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[13]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use BanFromChannelResponse.ProtoReflect.Descriptor instead.
+func (*BanFromChannelResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{13}
+}
+
+func (x *BanFromChannelResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *BanFromChannelResponse) GetStatus() BanFromChannelResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return BanFromChannelResponse_Ok
+}
+
+type UnbanFromChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api          string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID      uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	UnbannerGUID uint64 `protobuf:"varint,3,opt,name=unbannerGUID,proto3" json:"unbannerGUID,omitempty"`
+	ChannelName  string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName   string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID       TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *UnbanFromChannelRequest) Reset() {
+	*x = UnbanFromChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnbanFromChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnbanFromChannelRequest) ProtoMessage() {}
+
+func (x *UnbanFromChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnbanFromChannelRequest.ProtoReflect.Descriptor instead.
+func (*UnbanFromChannelRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *UnbanFromChannelRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *UnbanFromChannelRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *UnbanFromChannelRequest) GetUnbannerGUID() uint64 {
+	if x != nil {
+		return x.UnbannerGUID
+	}
+	return 0
+}
+
+func (x *UnbanFromChannelRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *UnbanFromChannelRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *UnbanFromChannelRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type UnbanFromChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                          `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status UnbanFromChannelResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.UnbanFromChannelResponse_Status" json:"status,omitempty"`
+}
+
+func (x *UnbanFromChannelResponse) Reset() {
+	*x = UnbanFromChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnbanFromChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnbanFromChannelResponse) ProtoMessage() {}
+
+func (x *UnbanFromChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnbanFromChannelResponse.ProtoReflect.Descriptor instead.
+func (*UnbanFromChannelResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *UnbanFromChannelResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *UnbanFromChannelResponse) GetStatus() UnbanFromChannelResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return UnbanFromChannelResponse_Ok
+}
+
+type SetChannelModeratorRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	SetterGUID  uint64 `protobuf:"varint,3,opt,name=setterGUID,proto3" json:"setterGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *SetChannelModeratorRequest) Reset() {
+	*x = SetChannelModeratorRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[16]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelModeratorRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelModeratorRequest) ProtoMessage() {}
+
+func (x *SetChannelModeratorRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[16]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelModeratorRequest.ProtoReflect.Descriptor instead.
+func (*SetChannelModeratorRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{16}
+}
+
+func (x *SetChannelModeratorRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelModeratorRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *SetChannelModeratorRequest) GetSetterGUID() uint64 {
+	if x != nil {
+		return x.SetterGUID
+	}
+	return 0
+}
+
+func (x *SetChannelModeratorRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *SetChannelModeratorRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *SetChannelModeratorRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type SetChannelModeratorResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                             `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status SetChannelModeratorResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.SetChannelModeratorResponse_Status" json:"status,omitempty"`
+}
+
+func (x *SetChannelModeratorResponse) Reset() {
+	*x = SetChannelModeratorResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[17]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelModeratorResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelModeratorResponse) ProtoMessage() {}
+
+func (x *SetChannelModeratorResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[17]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelModeratorResponse.ProtoReflect.Descriptor instead.
+func (*SetChannelModeratorResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{17}
+}
+
+func (x *SetChannelModeratorResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelModeratorResponse) GetStatus() SetChannelModeratorResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return SetChannelModeratorResponse_Ok
+}
+
+type UnsetChannelModeratorRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	SetterGUID  uint64 `protobuf:"varint,3,opt,name=setterGUID,proto3" json:"setterGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *UnsetChannelModeratorRequest) Reset() {
+	*x = UnsetChannelModeratorRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[18]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnsetChannelModeratorRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnsetChannelModeratorRequest) ProtoMessage() {}
+
+func (x *UnsetChannelModeratorRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[18]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnsetChannelModeratorRequest.ProtoReflect.Descriptor instead.
+func (*UnsetChannelModeratorRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{18}
+}
+
+func (x *UnsetChannelModeratorRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *UnsetChannelModeratorRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *UnsetChannelModeratorRequest) GetSetterGUID() uint64 {
+	if x != nil {
+		return x.SetterGUID
+	}
+	return 0
+}
+
+func (x *UnsetChannelModeratorRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *UnsetChannelModeratorRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *UnsetChannelModeratorRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type UnsetChannelModeratorResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                               `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status UnsetChannelModeratorResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.UnsetChannelModeratorResponse_Status" json:"status,omitempty"`
+}
+
+func (x *UnsetChannelModeratorResponse) Reset() {
+	*x = UnsetChannelModeratorResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[19]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnsetChannelModeratorResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnsetChannelModeratorResponse) ProtoMessage() {}
+
+func (x *UnsetChannelModeratorResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[19]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnsetChannelModeratorResponse.ProtoReflect.Descriptor instead.
+func (*UnsetChannelModeratorResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{19}
+}
+
+func (x *UnsetChannelModeratorResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *UnsetChannelModeratorResponse) GetStatus() UnsetChannelModeratorResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return UnsetChannelModeratorResponse_Ok
+}
+
+type SetChannelMuteRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	MuterGUID   uint64 `protobuf:"varint,3,opt,name=muterGUID,proto3" json:"muterGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *SetChannelMuteRequest) Reset() {
+	*x = SetChannelMuteRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[20]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelMuteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelMuteRequest) ProtoMessage() {}
+
+func (x *SetChannelMuteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[20]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelMuteRequest.ProtoReflect.Descriptor instead.
+func (*SetChannelMuteRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{20}
+}
+
+func (x *SetChannelMuteRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelMuteRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *SetChannelMuteRequest) GetMuterGUID() uint64 {
+	if x != nil {
+		return x.MuterGUID
+	}
+	return 0
+}
+
+func (x *SetChannelMuteRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *SetChannelMuteRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *SetChannelMuteRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type SetChannelMuteResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                        `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status SetChannelMuteResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.SetChannelMuteResponse_Status" json:"status,omitempty"`
+}
+
+func (x *SetChannelMuteResponse) Reset() {
+	*x = SetChannelMuteResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[21]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelMuteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelMuteResponse) ProtoMessage() {}
+
+func (x *SetChannelMuteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[21]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelMuteResponse.ProtoReflect.Descriptor instead.
+func (*SetChannelMuteResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{21}
+}
+
+func (x *SetChannelMuteResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelMuteResponse) GetStatus() SetChannelMuteResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return SetChannelMuteResponse_Ok
+}
+
+type UnsetChannelMuteRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	UnmuterGUID uint64 `protobuf:"varint,3,opt,name=unmuterGUID,proto3" json:"unmuterGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *UnsetChannelMuteRequest) Reset() {
+	*x = UnsetChannelMuteRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[22]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnsetChannelMuteRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnsetChannelMuteRequest) ProtoMessage() {}
+
+func (x *UnsetChannelMuteRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[22]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnsetChannelMuteRequest.ProtoReflect.Descriptor instead.
+func (*UnsetChannelMuteRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{22}
+}
+
+func (x *UnsetChannelMuteRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *UnsetChannelMuteRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *UnsetChannelMuteRequest) GetUnmuterGUID() uint64 {
+	if x != nil {
+		return x.UnmuterGUID
+	}
+	return 0
+}
+
+func (x *UnsetChannelMuteRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *UnsetChannelMuteRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *UnsetChannelMuteRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type UnsetChannelMuteResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                          `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status UnsetChannelMuteResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.UnsetChannelMuteResponse_Status" json:"status,omitempty"`
+}
+
+func (x *UnsetChannelMuteResponse) Reset() {
+	*x = UnsetChannelMuteResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[23]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UnsetChannelMuteResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UnsetChannelMuteResponse) ProtoMessage() {}
+
+func (x *UnsetChannelMuteResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[23]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UnsetChannelMuteResponse.ProtoReflect.Descriptor instead.
+func (*UnsetChannelMuteResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{23}
+}
+
+func (x *UnsetChannelMuteResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *UnsetChannelMuteResponse) GetStatus() UnsetChannelMuteResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return UnsetChannelMuteResponse_Ok
+}
+
+type SetChannelOwnerRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	SetterGUID  uint64 `protobuf:"varint,3,opt,name=setterGUID,proto3" json:"setterGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *SetChannelOwnerRequest) Reset() {
+	*x = SetChannelOwnerRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[24]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelOwnerRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelOwnerRequest) ProtoMessage() {}
+
+func (x *SetChannelOwnerRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[24]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelOwnerRequest.ProtoReflect.Descriptor instead.
+func (*SetChannelOwnerRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{24}
+}
+
+func (x *SetChannelOwnerRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelOwnerRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *SetChannelOwnerRequest) GetSetterGUID() uint64 {
+	if x != nil {
+		return x.SetterGUID
+	}
+	return 0
+}
+
+func (x *SetChannelOwnerRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *SetChannelOwnerRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *SetChannelOwnerRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type SetChannelOwnerResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                         `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status SetChannelOwnerResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.SetChannelOwnerResponse_Status" json:"status,omitempty"`
+}
+
+func (x *SetChannelOwnerResponse) Reset() {
+	*x = SetChannelOwnerResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[25]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelOwnerResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelOwnerResponse) ProtoMessage() {}
+
+func (x *SetChannelOwnerResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[25]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelOwnerResponse.ProtoReflect.Descriptor instead.
+func (*SetChannelOwnerResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{25}
+}
+
+func (x *SetChannelOwnerResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelOwnerResponse) GetStatus() SetChannelOwnerResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return SetChannelOwnerResponse_Ok
+}
+
+type SetChannelPasswordRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	SetterGUID  uint64 `protobuf:"varint,3,opt,name=setterGUID,proto3" json:"setterGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	Password    string `protobuf:"bytes,5,opt,name=password,proto3" json:"password,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *SetChannelPasswordRequest) Reset() {
+	*x = SetChannelPasswordRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[26]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelPasswordRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelPasswordRequest) ProtoMessage() {}
+
+func (x *SetChannelPasswordRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[26]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelPasswordRequest.ProtoReflect.Descriptor instead.
+func (*SetChannelPasswordRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{26}
+}
+
+func (x *SetChannelPasswordRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelPasswordRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *SetChannelPasswordRequest) GetSetterGUID() uint64 {
+	if x != nil {
+		return x.SetterGUID
+	}
+	return 0
+}
+
+func (x *SetChannelPasswordRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *SetChannelPasswordRequest) GetPassword() string {
+	if x != nil {
+		return x.Password
+	}
+	return ""
+}
+
+func (x *SetChannelPasswordRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type SetChannelPasswordResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                            `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status SetChannelPasswordResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.SetChannelPasswordResponse_Status" json:"status,omitempty"`
+}
+
+func (x *SetChannelPasswordResponse) Reset() {
+	*x = SetChannelPasswordResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[27]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *SetChannelPasswordResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*SetChannelPasswordResponse) ProtoMessage() {}
+
+func (x *SetChannelPasswordResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[27]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use SetChannelPasswordResponse.ProtoReflect.Descriptor instead.
+func (*SetChannelPasswordResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{27}
+}
+
+func (x *SetChannelPasswordResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *SetChannelPasswordResponse) GetStatus() SetChannelPasswordResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return SetChannelPasswordResponse_Ok
+}
+
+type ToggleChannelModerationRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	TogglerGUID uint64 `protobuf:"varint,3,opt,name=togglerGUID,proto3" json:"togglerGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,5,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *ToggleChannelModerationRequest) Reset() {
+	*x = ToggleChannelModerationRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[28]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ToggleChannelModerationRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ToggleChannelModerationRequest) ProtoMessage() {}
+
+func (x *ToggleChannelModerationRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[28]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ToggleChannelModerationRequest.ProtoReflect.Descriptor instead.
+func (*ToggleChannelModerationRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{28}
+}
+
+func (x *ToggleChannelModerationRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *ToggleChannelModerationRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *ToggleChannelModerationRequest) GetTogglerGUID() uint64 {
+	if x != nil {
+		return x.TogglerGUID
+	}
+	return 0
+}
+
+func (x *ToggleChannelModerationRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *ToggleChannelModerationRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type ToggleChannelModerationResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api               string                                 `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status            ToggleChannelModerationResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.ToggleChannelModerationResponse_Status" json:"status,omitempty"`
+	ModerationEnabled bool                                   `protobuf:"varint,3,opt,name=moderationEnabled,proto3" json:"moderationEnabled,omitempty"`
+}
+
+func (x *ToggleChannelModerationResponse) Reset() {
+	*x = ToggleChannelModerationResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[29]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ToggleChannelModerationResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ToggleChannelModerationResponse) ProtoMessage() {}
+
+func (x *ToggleChannelModerationResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[29]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ToggleChannelModerationResponse.ProtoReflect.Descriptor instead.
+func (*ToggleChannelModerationResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{29}
+}
+
+func (x *ToggleChannelModerationResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *ToggleChannelModerationResponse) GetStatus() ToggleChannelModerationResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return ToggleChannelModerationResponse_Ok
+}
+
+func (x *ToggleChannelModerationResponse) GetModerationEnabled() bool {
+	if x != nil {
+		return x.ModerationEnabled
+	}
+	return false
+}
+
+type ToggleChannelAnnouncementsRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	TogglerGUID uint64 `protobuf:"varint,3,opt,name=togglerGUID,proto3" json:"togglerGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,5,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *ToggleChannelAnnouncementsRequest) Reset() {
+	*x = ToggleChannelAnnouncementsRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[30]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ToggleChannelAnnouncementsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ToggleChannelAnnouncementsRequest) ProtoMessage() {}
+
+func (x *ToggleChannelAnnouncementsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[30]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ToggleChannelAnnouncementsRequest.ProtoReflect.Descriptor instead.
+func (*ToggleChannelAnnouncementsRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *ToggleChannelAnnouncementsRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *ToggleChannelAnnouncementsRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *ToggleChannelAnnouncementsRequest) GetTogglerGUID() uint64 {
+	if x != nil {
+		return x.TogglerGUID
+	}
+	return 0
+}
+
+func (x *ToggleChannelAnnouncementsRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *ToggleChannelAnnouncementsRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type ToggleChannelAnnouncementsResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api                  string                                    `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status               ToggleChannelAnnouncementsResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.ToggleChannelAnnouncementsResponse_Status" json:"status,omitempty"`
+	AnnouncementsEnabled bool                                      `protobuf:"varint,3,opt,name=announcementsEnabled,proto3" json:"announcementsEnabled,omitempty"`
+}
+
+func (x *ToggleChannelAnnouncementsResponse) Reset() {
+	*x = ToggleChannelAnnouncementsResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[31]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ToggleChannelAnnouncementsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ToggleChannelAnnouncementsResponse) ProtoMessage() {}
+
+func (x *ToggleChannelAnnouncementsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[31]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ToggleChannelAnnouncementsResponse.ProtoReflect.Descriptor instead.
+func (*ToggleChannelAnnouncementsResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{31}
+}
+
+func (x *ToggleChannelAnnouncementsResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *ToggleChannelAnnouncementsResponse) GetStatus() ToggleChannelAnnouncementsResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return ToggleChannelAnnouncementsResponse_Ok
+}
+
+func (x *ToggleChannelAnnouncementsResponse) GetAnnouncementsEnabled() bool {
+	if x != nil {
+		return x.AnnouncementsEnabled
+	}
+	return false
+}
+
+type InviteToChannelRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api         string `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	RealmID     uint32 `protobuf:"varint,2,opt,name=realmID,proto3" json:"realmID,omitempty"`
+	InviterGUID uint64 `protobuf:"varint,3,opt,name=inviterGUID,proto3" json:"inviterGUID,omitempty"`
+	ChannelName string `protobuf:"bytes,4,opt,name=channelName,proto3" json:"channelName,omitempty"`
+	TargetName  string `protobuf:"bytes,5,opt,name=targetName,proto3" json:"targetName,omitempty"`
+	TeamID      TeamID `protobuf:"varint,6,opt,name=teamID,proto3,enum=v1.TeamID" json:"teamID,omitempty"`
+}
+
+func (x *InviteToChannelRequest) Reset() {
+	*x = InviteToChannelRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[32]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InviteToChannelRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InviteToChannelRequest) ProtoMessage() {}
+
+func (x *InviteToChannelRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[32]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InviteToChannelRequest.ProtoReflect.Descriptor instead.
+func (*InviteToChannelRequest) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{32}
+}
+
+func (x *InviteToChannelRequest) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *InviteToChannelRequest) GetRealmID() uint32 {
+	if x != nil {
+		return x.RealmID
+	}
+	return 0
+}
+
+func (x *InviteToChannelRequest) GetInviterGUID() uint64 {
+	if x != nil {
+		return x.InviterGUID
+	}
+	return 0
+}
+
+func (x *InviteToChannelRequest) GetChannelName() string {
+	if x != nil {
+		return x.ChannelName
+	}
+	return ""
+}
+
+func (x *InviteToChannelRequest) GetTargetName() string {
+	if x != nil {
+		return x.TargetName
+	}
+	return ""
+}
+
+func (x *InviteToChannelRequest) GetTeamID() TeamID {
+	if x != nil {
+		return x.TeamID
+	}
+	return TeamID_TEAM_ALLIANCE
+}
+
+type InviteToChannelResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Api    string                         `protobuf:"bytes,1,opt,name=api,proto3" json:"api,omitempty"`
+	Status InviteToChannelResponse_Status `protobuf:"varint,2,opt,name=status,proto3,enum=v1.InviteToChannelResponse_Status" json:"status,omitempty"`
+}
+
+func (x *InviteToChannelResponse) Reset() {
+	*x = InviteToChannelResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[33]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *InviteToChannelResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*InviteToChannelResponse) ProtoMessage() {}
+
+func (x *InviteToChannelResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[33]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use InviteToChannelResponse.ProtoReflect.Descriptor instead.
+func (*InviteToChannelResponse) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{33}
+}
+
+func (x *InviteToChannelResponse) GetApi() string {
+	if x != nil {
+		return x.Api
+	}
+	return ""
+}
+
+func (x *InviteToChannelResponse) GetStatus() InviteToChannelResponse_Status {
+	if x != nil {
+		return x.Status
+	}
+	return InviteToChannelResponse_Ok
+}
+
+type ChannelInfo struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Name        string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	ChannelID   uint32 `protobuf:"varint,2,opt,name=channelID,proto3" json:"channelID,omitempty"`
+	Flags       uint32 `protobuf:"varint,3,opt,name=flags,proto3" json:"flags,omitempty"`
+	NumMembers  uint32 `protobuf:"varint,4,opt,name=numMembers,proto3" json:"numMembers,omitempty"`
+	MemberFlags uint32 `protobuf:"varint,5,opt,name=memberFlags,proto3" json:"memberFlags,omitempty"` // Flags for the requesting player
+}
+
+func (x *ChannelInfo) Reset() {
+	*x = ChannelInfo{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChannelInfo) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChannelInfo) ProtoMessage() {}
+
+func (x *ChannelInfo) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChannelInfo.ProtoReflect.Descriptor instead.
+func (*ChannelInfo) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *ChannelInfo) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ChannelInfo) GetChannelID() uint32 {
+	if x != nil {
+		return x.ChannelID
+	}
+	return 0
+}
+
+func (x *ChannelInfo) GetFlags() uint32 {
+	if x != nil {
+		return x.Flags
+	}
+	return 0
+}
+
+func (x *ChannelInfo) GetNumMembers() uint32 {
+	if x != nil {
+		return x.NumMembers
+	}
+	return 0
+}
+
+func (x *ChannelInfo) GetMemberFlags() uint32 {
+	if x != nil {
+		return x.MemberFlags
+	}
+	return 0
+}
+
+type ChannelMember struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Guid  uint64 `protobuf:"varint,1,opt,name=guid,proto3" json:"guid,omitempty"`
+	Name  string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Flags uint32 `protobuf:"varint,3,opt,name=flags,proto3" json:"flags,omitempty"` // MEMBER_FLAG_OWNER, MEMBER_FLAG_MODERATOR, etc.
+}
+
+func (x *ChannelMember) Reset() {
+	*x = ChannelMember{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_chat_proto_msgTypes[35]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ChannelMember) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ChannelMember) ProtoMessage() {}
+
+func (x *ChannelMember) ProtoReflect() protoreflect.Message {
+	mi := &file_chat_proto_msgTypes[35]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ChannelMember.ProtoReflect.Descriptor instead.
+func (*ChannelMember) Descriptor() ([]byte, []int) {
+	return file_chat_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *ChannelMember) GetGuid() uint64 {
+	if x != nil {
+		return x.Guid
+	}
+	return 0
+}
+
+func (x *ChannelMember) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
+}
+
+func (x *ChannelMember) GetFlags() uint32 {
+	if x != nil {
+		return x.Flags
+	}
+	return 0
+}
+
 var File_chat_proto protoreflect.FileDescriptor
 
 var file_chat_proto_rawDesc = []byte{
@@ -263,15 +3589,509 @@ var file_chat_proto_rawDesc = []byte{
 	0x28, 0x04, 0x52, 0x0c, 0x72, 0x65, 0x63, 0x65, 0x69, 0x76, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44,
 	0x22, 0x27, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b,
 	0x10, 0x00, 0x12, 0x15, 0x0a, 0x11, 0x43, 0x68, 0x61, 0x72, 0x61, 0x63, 0x74, 0x65, 0x72, 0x4e,
-	0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10, 0x02, 0x32, 0x62, 0x0a, 0x0b, 0x43, 0x68, 0x61,
+	0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10, 0x02, 0x22, 0xa4, 0x02, 0x0a, 0x12, 0x4a, 0x6f,
+	0x69, 0x6e, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61,
+	0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a,
+	0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04,
+	0x52, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a,
+	0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06,
+	0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76,
+	0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18,
+	0x06, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61,
+	0x6d, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x49, 0x44, 0x18,
+	0x07, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x09, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x49, 0x44,
+	0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18, 0x08, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12, 0x22, 0x0a, 0x0c,
+	0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x46, 0x6c, 0x61, 0x67, 0x73, 0x18, 0x09, 0x20, 0x01,
+	0x28, 0x0d, 0x52, 0x0c, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x46, 0x6c, 0x61, 0x67, 0x73,
+	0x22, 0xeb, 0x01, 0x0a, 0x13, 0x4a, 0x6f, 0x69, 0x6e, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x36, 0x0a, 0x06, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1e, 0x2e, 0x76, 0x31, 0x2e,
+	0x4a, 0x6f, 0x69, 0x6e, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x12, 0x29, 0x0a, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x0b, 0x32, 0x0f, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x49, 0x6e, 0x66, 0x6f, 0x52, 0x07, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x22, 0x5f, 0x0a,
+	0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12,
+	0x11, 0x0a, 0x0d, 0x57, 0x72, 0x6f, 0x6e, 0x67, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64,
+	0x10, 0x01, 0x12, 0x0a, 0x0a, 0x06, 0x42, 0x61, 0x6e, 0x6e, 0x65, 0x64, 0x10, 0x02, 0x12, 0x10,
+	0x0a, 0x0c, 0x57, 0x72, 0x6f, 0x6e, 0x67, 0x46, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x10, 0x03,
+	0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x49, 0x6e, 0x41, 0x72, 0x65, 0x61, 0x10, 0x04, 0x12,
+	0x0d, 0x0a, 0x09, 0x54, 0x68, 0x72, 0x6f, 0x74, 0x74, 0x6c, 0x65, 0x64, 0x10, 0x05, 0x22, 0xa7,
+	0x01, 0x0a, 0x13, 0x4c, 0x65, 0x61, 0x76, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c,
+	0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d,
+	0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x47, 0x55,
+	0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d,
+	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0x82, 0x01, 0x0a, 0x14, 0x4c, 0x65, 0x61,
+	0x76, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03,
+	0x61, 0x70, 0x69, 0x12, 0x37, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x1f, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x65, 0x61, 0x76, 0x65, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x1f, 0x0a, 0x06,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d,
+	0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x22, 0x83, 0x02,
+	0x0a, 0x19, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61,
+	0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a,
+	0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07,
+	0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x65, 0x6e, 0x64, 0x65,
+	0x72, 0x47, 0x55, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x73, 0x65, 0x6e,
+	0x64, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x65, 0x6e, 0x64, 0x65,
+	0x72, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x73, 0x65, 0x6e,
+	0x64, 0x65, 0x72, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x6c, 0x61, 0x6e,
+	0x67, 0x75, 0x61, 0x67, 0x65, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x08, 0x6c, 0x61, 0x6e,
+	0x67, 0x75, 0x61, 0x67, 0x65, 0x12, 0x18, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65,
+	0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12,
+	0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18, 0x08, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61,
+	0x6d, 0x49, 0x44, 0x22, 0xa8, 0x01, 0x0a, 0x1a, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x61, 0x70, 0x69, 0x12, 0x3d, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x25, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x22, 0x39, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a,
+	0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x10, 0x01, 0x12, 0x09, 0x0a, 0x05, 0x4d, 0x75, 0x74, 0x65, 0x64, 0x10, 0x02, 0x12,
+	0x0d, 0x0a, 0x09, 0x54, 0x68, 0x72, 0x6f, 0x74, 0x74, 0x6c, 0x65, 0x64, 0x10, 0x03, 0x22, 0xa9,
+	0x01, 0x0a, 0x15, 0x47, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4c, 0x69, 0x73,
+	0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65,
+	0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61,
+	0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x47, 0x55,
+	0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x70, 0x6c, 0x61, 0x79, 0x65, 0x72,
+	0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e,
+	0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d,
+	0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xb3, 0x01, 0x0a, 0x16, 0x47,
+	0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x39, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x12, 0x2b, 0x0a, 0x07, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x18, 0x03, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x76, 0x31, 0x2e, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x07, 0x6d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x22,
+	0x1f, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10,
+	0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01,
+	0x22, 0xca, 0x01, 0x0a, 0x16, 0x4b, 0x69, 0x63, 0x6b, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61,
+	0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61,
+	0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a,
+	0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07,
+	0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x6b, 0x69, 0x63, 0x6b, 0x65,
+	0x72, 0x47, 0x55, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x6b, 0x69, 0x63,
+	0x6b, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72,
+	0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74,
+	0x61, 0x72, 0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61,
+	0x6d, 0x49, 0x44, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54,
+	0x65, 0x61, 0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xae, 0x01,
+	0x0a, 0x17, 0x4b, 0x69, 0x63, 0x6b, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x3a, 0x0a, 0x06, 0x73,
+	0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x22, 0x2e, 0x76, 0x31,
+	0x2e, 0x4b, 0x69, 0x63, 0x6b, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52,
+	0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x45, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74,
+	0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e, 0x6f, 0x74, 0x4d,
+	0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x50, 0x6c,
+	0x61, 0x79, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10, 0x03, 0x22, 0xc9,
+	0x01, 0x0a, 0x15, 0x42, 0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65,
+	0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61,
+	0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x62, 0x61, 0x6e, 0x6e, 0x65, 0x72, 0x47, 0x55,
+	0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x62, 0x61, 0x6e, 0x6e, 0x65, 0x72,
+	0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e,
+	0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x61, 0x72, 0x67,
+	0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d,
+	0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xac, 0x01, 0x0a, 0x16, 0x42,
+	0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x39, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x61, 0x6e,
+	0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x22, 0x45, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02,
+	0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65,
+	0x72, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e, 0x6f, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e,
+	0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10, 0x03, 0x22, 0xcf, 0x01, 0x0a, 0x17, 0x55, 0x6e,
+	0x62, 0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d,
+	0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49,
+	0x44, 0x12, 0x22, 0x0a, 0x0c, 0x75, 0x6e, 0x62, 0x61, 0x6e, 0x6e, 0x65, 0x72, 0x47, 0x55, 0x49,
+	0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0c, 0x75, 0x6e, 0x62, 0x61, 0x6e, 0x6e, 0x65,
+	0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65,
+	0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x61, 0x72,
+	0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49,
+	0x44, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61,
+	0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xb1, 0x01, 0x0a, 0x18,
+	0x55, 0x6e, 0x62, 0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x3b, 0x0a, 0x06, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x23, 0x2e, 0x76, 0x31, 0x2e,
+	0x55, 0x6e, 0x62, 0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52,
+	0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x46, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74,
+	0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e, 0x6f, 0x74, 0x4d,
+	0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x10, 0x02, 0x12, 0x13, 0x0a, 0x0f, 0x50, 0x6c,
+	0x61, 0x79, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x42, 0x61, 0x6e, 0x6e, 0x65, 0x64, 0x10, 0x03, 0x22,
+	0xce, 0x01, 0x0a, 0x1a, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f,
+	0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10,
+	0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69,
+	0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x65,
+	0x74, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a,
+	0x73, 0x65, 0x74, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a,
+	0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06,
+	0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76,
+	0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x22, 0xb2, 0x01, 0x0a, 0x1b, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d,
+	0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61,
+	0x70, 0x69, 0x12, 0x3e, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x26, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x22, 0x41, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02,
+	0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65,
+	0x72, 0x10, 0x01, 0x12, 0x0c, 0x0a, 0x08, 0x4e, 0x6f, 0x74, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x10,
+	0x02, 0x12, 0x12, 0x0a, 0x0e, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x46, 0x6f,
+	0x75, 0x6e, 0x64, 0x10, 0x03, 0x22, 0xd0, 0x01, 0x0a, 0x1c, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c,
+	0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d,
+	0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x65, 0x72, 0x47, 0x55,
+	0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d,
+	0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x4e, 0x61,
+	0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74,
+	0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18, 0x06,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xb6, 0x01, 0x0a, 0x1d, 0x55, 0x6e, 0x73,
+	0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74,
+	0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70,
+	0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x40, 0x0a, 0x06,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x28, 0x2e, 0x76,
+	0x31, 0x2e, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f,
+	0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x41,
+	0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00,
+	0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12,
+	0x0c, 0x0a, 0x08, 0x4e, 0x6f, 0x74, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x10, 0x02, 0x12, 0x12, 0x0a,
+	0x0e, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10,
+	0x03, 0x22, 0xc7, 0x01, 0x0a, 0x15, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4d, 0x75, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61,
+	0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a,
+	0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07,
+	0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1c, 0x0a, 0x09, 0x6d, 0x75, 0x74, 0x65, 0x72,
+	0x47, 0x55, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x09, 0x6d, 0x75, 0x74, 0x65,
+	0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65,
+	0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x61, 0x72,
+	0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49,
+	0x44, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61,
+	0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xac, 0x01, 0x0a, 0x16,
+	0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x39, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x21, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65,
+	0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x22, 0x45, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a,
+	0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e, 0x6f, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x72,
+	0x61, 0x74, 0x6f, 0x72, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72,
+	0x4e, 0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10, 0x03, 0x22, 0xcd, 0x01, 0x0a, 0x17, 0x55,
+	0x6e, 0x73, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c,
+	0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d,
+	0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x75, 0x6e, 0x6d, 0x75, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49,
+	0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0b, 0x75, 0x6e, 0x6d, 0x75, 0x74, 0x65, 0x72,
+	0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e,
+	0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x61, 0x72, 0x67,
+	0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d,
+	0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xb0, 0x01, 0x0a, 0x18, 0x55,
+	0x6e, 0x73, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x3b, 0x0a, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x23, 0x2e, 0x76, 0x31, 0x2e, 0x55,
+	0x6e, 0x73, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06,
+	0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x45, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73,
+	0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d,
+	0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e, 0x6f, 0x74, 0x4d, 0x6f,
+	0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x50, 0x6c, 0x61,
+	0x79, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10, 0x03, 0x22, 0xca, 0x01,
+	0x0a, 0x16, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4f, 0x77, 0x6e, 0x65,
+	0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65,
+	0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61,
+	0x6c, 0x6d, 0x49, 0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x65, 0x72, 0x47, 0x55,
+	0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x65, 0x72,
+	0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e,
+	0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74,
+	0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x61, 0x72, 0x67,
+	0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44,
+	0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d,
+	0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xaa, 0x01, 0x0a, 0x17, 0x53,
+	0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x3a, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74,
+	0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x22, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65,
+	0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74,
+	0x61, 0x74, 0x75, 0x73, 0x22, 0x41, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06,
+	0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d,
+	0x62, 0x65, 0x72, 0x10, 0x01, 0x12, 0x0c, 0x0a, 0x08, 0x4e, 0x6f, 0x74, 0x4f, 0x77, 0x6e, 0x65,
+	0x72, 0x10, 0x02, 0x12, 0x12, 0x0a, 0x0e, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e, 0x6f, 0x74,
+	0x46, 0x6f, 0x75, 0x6e, 0x64, 0x10, 0x03, 0x22, 0xc9, 0x01, 0x0a, 0x19, 0x53, 0x65, 0x74, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d,
+	0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49,
+	0x44, 0x12, 0x1e, 0x0a, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x18,
+	0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x73, 0x65, 0x74, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49,
+	0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e,
+	0x61, 0x6d, 0x65, 0x12, 0x1a, 0x0a, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x18,
+	0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x70, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x12,
+	0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61,
+	0x6d, 0x49, 0x44, 0x22, 0x9c, 0x01, 0x0a, 0x1a, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x03, 0x61, 0x70, 0x69, 0x12, 0x3d, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x0e, 0x32, 0x25, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61,
+	0x6e, 0x6e, 0x65, 0x6c, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x22, 0x2d, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a,
+	0x02, 0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x10, 0x01, 0x12, 0x0c, 0x0a, 0x08, 0x4e, 0x6f, 0x74, 0x4f, 0x77, 0x6e, 0x65, 0x72,
+	0x10, 0x02, 0x22, 0xb4, 0x01, 0x0a, 0x1e, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61,
+	0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d,
+	0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49,
+	0x44, 0x12, 0x20, 0x0a, 0x0b, 0x74, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0b, 0x74, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x72, 0x47,
+	0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61,
+	0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18,
+	0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49,
+	0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xd8, 0x01, 0x0a, 0x1f, 0x54, 0x6f,
+	0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72,
+	0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a,
+	0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12,
+	0x42, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x2a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x2e, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61,
+	0x74, 0x75, 0x73, 0x12, 0x2c, 0x0a, 0x11, 0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f,
+	0x6e, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x11,
+	0x6d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x45, 0x6e, 0x61, 0x62, 0x6c, 0x65,
+	0x64, 0x22, 0x31, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f,
+	0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72,
+	0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e, 0x6f, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74,
+	0x6f, 0x72, 0x10, 0x02, 0x22, 0xb7, 0x01, 0x0a, 0x21, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x41, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x6d, 0x65,
+	0x6e, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70,
+	0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x18, 0x0a, 0x07,
+	0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x07, 0x72,
+	0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x74, 0x6f, 0x67, 0x67, 0x6c, 0x65,
+	0x72, 0x47, 0x55, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0b, 0x74, 0x6f, 0x67,
+	0x67, 0x6c, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x63,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x22, 0x0a, 0x06, 0x74, 0x65,
+	0x61, 0x6d, 0x49, 0x44, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e,
+	0x54, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x22, 0xe4,
+	0x01, 0x0a, 0x22, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x41, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x03, 0x61, 0x70, 0x69, 0x12, 0x45, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75,
+	0x73, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2d, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x6f, 0x67,
+	0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x41, 0x6e, 0x6e, 0x6f, 0x75, 0x6e,
+	0x63, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x32,
+	0x0a, 0x14, 0x61, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x45,
+	0x6e, 0x61, 0x62, 0x6c, 0x65, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x14, 0x61, 0x6e,
+	0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x45, 0x6e, 0x61, 0x62, 0x6c,
+	0x65, 0x64, 0x22, 0x31, 0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02,
+	0x4f, 0x6b, 0x10, 0x00, 0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65,
+	0x72, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x4e, 0x6f, 0x74, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x10, 0x02, 0x22, 0xcc, 0x01, 0x0a, 0x16, 0x49, 0x6e, 0x76, 0x69, 0x74, 0x65,
+	0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61,
+	0x70, 0x69, 0x12, 0x18, 0x0a, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0d, 0x52, 0x07, 0x72, 0x65, 0x61, 0x6c, 0x6d, 0x49, 0x44, 0x12, 0x20, 0x0a, 0x0b,
+	0x69, 0x6e, 0x76, 0x69, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x04, 0x52, 0x0b, 0x69, 0x6e, 0x76, 0x69, 0x74, 0x65, 0x72, 0x47, 0x55, 0x49, 0x44, 0x12, 0x20,
+	0x0a, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x04, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x0b, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4e, 0x61, 0x6d, 0x65,
+	0x12, 0x1e, 0x0a, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65, 0x18, 0x05,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x0a, 0x74, 0x61, 0x72, 0x67, 0x65, 0x74, 0x4e, 0x61, 0x6d, 0x65,
+	0x12, 0x22, 0x0a, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x0a, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x49, 0x44, 0x52, 0x06, 0x74, 0x65,
+	0x61, 0x6d, 0x49, 0x44, 0x22, 0xd9, 0x01, 0x0a, 0x17, 0x49, 0x6e, 0x76, 0x69, 0x74, 0x65, 0x54,
+	0x6f, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x10, 0x0a, 0x03, 0x61, 0x70, 0x69, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x03, 0x61,
+	0x70, 0x69, 0x12, 0x3a, 0x0a, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x22, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x6e, 0x76, 0x69, 0x74, 0x65, 0x54, 0x6f,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x2e,
+	0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x52, 0x06, 0x73, 0x74, 0x61, 0x74, 0x75, 0x73, 0x22, 0x70,
+	0x0a, 0x06, 0x53, 0x74, 0x61, 0x74, 0x75, 0x73, 0x12, 0x06, 0x0a, 0x02, 0x4f, 0x6b, 0x10, 0x00,
+	0x12, 0x0d, 0x0a, 0x09, 0x4e, 0x6f, 0x74, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x01, 0x12,
+	0x12, 0x0a, 0x0e, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x4e, 0x6f, 0x74, 0x46, 0x6f, 0x75, 0x6e,
+	0x64, 0x10, 0x02, 0x12, 0x17, 0x0a, 0x13, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x41, 0x6c, 0x72,
+	0x65, 0x61, 0x64, 0x79, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x10, 0x03, 0x12, 0x10, 0x0a, 0x0c,
+	0x57, 0x72, 0x6f, 0x6e, 0x67, 0x46, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x10, 0x04, 0x12, 0x10,
+	0x0a, 0x0c, 0x50, 0x6c, 0x61, 0x79, 0x65, 0x72, 0x42, 0x61, 0x6e, 0x6e, 0x65, 0x64, 0x10, 0x05,
+	0x22, 0x97, 0x01, 0x0a, 0x0b, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x49, 0x6e, 0x66, 0x6f,
+	0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04,
+	0x6e, 0x61, 0x6d, 0x65, 0x12, 0x1c, 0x0a, 0x09, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x49,
+	0x44, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x09, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x49, 0x44, 0x12, 0x14, 0x0a, 0x05, 0x66, 0x6c, 0x61, 0x67, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x0d, 0x52, 0x05, 0x66, 0x6c, 0x61, 0x67, 0x73, 0x12, 0x1e, 0x0a, 0x0a, 0x6e, 0x75, 0x6d, 0x4d,
+	0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0a, 0x6e, 0x75,
+	0x6d, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x73, 0x12, 0x20, 0x0a, 0x0b, 0x6d, 0x65, 0x6d, 0x62,
+	0x65, 0x72, 0x46, 0x6c, 0x61, 0x67, 0x73, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x0b, 0x6d,
+	0x65, 0x6d, 0x62, 0x65, 0x72, 0x46, 0x6c, 0x61, 0x67, 0x73, 0x22, 0x4d, 0x0a, 0x0d, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x12, 0x0a, 0x04, 0x67,
+	0x75, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x52, 0x04, 0x67, 0x75, 0x69, 0x64, 0x12,
+	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
+	0x61, 0x6d, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x66, 0x6c, 0x61, 0x67, 0x73, 0x18, 0x03, 0x20, 0x01,
+	0x28, 0x0d, 0x52, 0x05, 0x66, 0x6c, 0x61, 0x67, 0x73, 0x2a, 0x3d, 0x0a, 0x06, 0x54, 0x65, 0x61,
+	0x6d, 0x49, 0x44, 0x12, 0x11, 0x0a, 0x0d, 0x54, 0x45, 0x41, 0x4d, 0x5f, 0x41, 0x4c, 0x4c, 0x49,
+	0x41, 0x4e, 0x43, 0x45, 0x10, 0x00, 0x12, 0x0e, 0x0a, 0x0a, 0x54, 0x45, 0x41, 0x4d, 0x5f, 0x48,
+	0x4f, 0x52, 0x44, 0x45, 0x10, 0x01, 0x12, 0x10, 0x0a, 0x0c, 0x54, 0x45, 0x41, 0x4d, 0x5f, 0x4e,
+	0x45, 0x55, 0x54, 0x52, 0x41, 0x4c, 0x10, 0x02, 0x32, 0xf3, 0x0a, 0x0a, 0x0b, 0x43, 0x68, 0x61,
 	0x74, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x12, 0x53, 0x0a, 0x12, 0x53, 0x65, 0x6e, 0x64,
 	0x57, 0x68, 0x69, 0x73, 0x70, 0x65, 0x72, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x1d,
 	0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x57, 0x68, 0x69, 0x73, 0x70, 0x65, 0x72, 0x4d,
 	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e,
 	0x76, 0x31, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x57, 0x68, 0x69, 0x73, 0x70, 0x65, 0x72, 0x4d, 0x65,
-	0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x0d, 0x5a,
-	0x0b, 0x67, 0x65, 0x6e, 0x2f, 0x63, 0x68, 0x61, 0x74, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70, 0x72,
-	0x6f, 0x74, 0x6f, 0x33,
+	0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x3e, 0x0a,
+	0x0b, 0x4a, 0x6f, 0x69, 0x6e, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x16, 0x2e, 0x76,
+	0x31, 0x2e, 0x4a, 0x6f, 0x69, 0x6e, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x17, 0x2e, 0x76, 0x31, 0x2e, 0x4a, 0x6f, 0x69, 0x6e, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x41, 0x0a,
+	0x0c, 0x4c, 0x65, 0x61, 0x76, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x17, 0x2e,
+	0x76, 0x31, 0x2e, 0x4c, 0x65, 0x61, 0x76, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x18, 0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x65, 0x61, 0x76,
+	0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x53, 0x0a, 0x12, 0x53, 0x65, 0x6e, 0x64, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d,
+	0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x12, 0x1d, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x6e, 0x64,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1e, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x6e, 0x64, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x73, 0x73, 0x61, 0x67, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x12, 0x19, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x47, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a,
+	0x0a, 0x0f, 0x4b, 0x69, 0x63, 0x6b, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x12, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x4b, 0x69, 0x63, 0x6b, 0x46, 0x72, 0x6f, 0x6d, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1b, 0x2e,
+	0x76, 0x31, 0x2e, 0x4b, 0x69, 0x63, 0x6b, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x0e, 0x42, 0x61,
+	0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x19, 0x2e, 0x76,
+	0x31, 0x2e, 0x42, 0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x42, 0x61, 0x6e,
+	0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x12, 0x4d, 0x0a, 0x10, 0x55, 0x6e, 0x62, 0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e, 0x62,
+	0x61, 0x6e, 0x46, 0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e, 0x62, 0x61, 0x6e, 0x46,
+	0x72, 0x6f, 0x6d, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x56, 0x0a, 0x13, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c,
+	0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x12, 0x1e, 0x2e, 0x76, 0x31, 0x2e, 0x53,
+	0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74,
+	0x6f, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1f, 0x2e, 0x76, 0x31, 0x2e, 0x53,
+	0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74,
+	0x6f, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5c, 0x0a, 0x15, 0x55, 0x6e,
+	0x73, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61,
+	0x74, 0x6f, 0x72, 0x12, 0x20, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x21, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e, 0x73, 0x65, 0x74,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x6f, 0x72,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x47, 0x0a, 0x0e, 0x53, 0x65, 0x74, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x12, 0x19, 0x2e, 0x76, 0x31, 0x2e,
+	0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x4d, 0x0a, 0x10, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x4d, 0x75, 0x74, 0x65, 0x12, 0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e, 0x73, 0x65, 0x74,
+	0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x1a, 0x1c, 0x2e, 0x76, 0x31, 0x2e, 0x55, 0x6e, 0x73, 0x65, 0x74, 0x43, 0x68, 0x61,
+	0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x75, 0x74, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x4a, 0x0a, 0x0f, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4f, 0x77,
+	0x6e, 0x65, 0x72, 0x12, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x4f, 0x77, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a,
+	0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4f,
+	0x77, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x53, 0x0a, 0x12,
+	0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f,
+	0x72, 0x64, 0x12, 0x1d, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1e, 0x2e, 0x76, 0x31, 0x2e, 0x53, 0x65, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x50, 0x61, 0x73, 0x73, 0x77, 0x6f, 0x72, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x62, 0x0a, 0x17, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x12, 0x22, 0x2e, 0x76,
+	0x31, 0x2e, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d,
+	0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x1a, 0x23, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e,
+	0x6e, 0x65, 0x6c, 0x4d, 0x6f, 0x64, 0x65, 0x72, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x6b, 0x0a, 0x1a, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x41, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x6d, 0x65,
+	0x6e, 0x74, 0x73, 0x12, 0x25, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x41, 0x6e, 0x6e, 0x6f, 0x75, 0x6e, 0x63, 0x65, 0x6d, 0x65,
+	0x6e, 0x74, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x1a, 0x26, 0x2e, 0x76, 0x31, 0x2e,
+	0x54, 0x6f, 0x67, 0x67, 0x6c, 0x65, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x41, 0x6e, 0x6e,
+	0x6f, 0x75, 0x6e, 0x63, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x4a, 0x0a, 0x0f, 0x49, 0x6e, 0x76, 0x69, 0x74, 0x65, 0x54, 0x6f, 0x43, 0x68,
+	0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x1a, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x6e, 0x76, 0x69, 0x74,
+	0x65, 0x54, 0x6f, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x1a, 0x1b, 0x2e, 0x76, 0x31, 0x2e, 0x49, 0x6e, 0x76, 0x69, 0x74, 0x65, 0x54, 0x6f, 0x43,
+	0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x42, 0x0d,
+	0x5a, 0x0b, 0x67, 0x65, 0x6e, 0x2f, 0x63, 0x68, 0x61, 0x74, 0x2f, 0x70, 0x62, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -286,22 +4106,139 @@ func file_chat_proto_rawDescGZIP() []byte {
 	return file_chat_proto_rawDescData
 }
 
-var file_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_chat_proto_enumTypes = make([]protoimpl.EnumInfo, 18)
+var file_chat_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_chat_proto_goTypes = []interface{}{
-	(SendWhisperMessageResponse_Status)(0), // 0: v1.SendWhisperMessageResponse.Status
-	(*SendWhisperMessageRequest)(nil),      // 1: v1.SendWhisperMessageRequest
-	(*SendWhisperMessageResponse)(nil),     // 2: v1.SendWhisperMessageResponse
+	(TeamID)(0),                                    // 0: v1.TeamID
+	(SendWhisperMessageResponse_Status)(0),         // 1: v1.SendWhisperMessageResponse.Status
+	(JoinChannelResponse_Status)(0),                // 2: v1.JoinChannelResponse.Status
+	(LeaveChannelResponse_Status)(0),               // 3: v1.LeaveChannelResponse.Status
+	(SendChannelMessageResponse_Status)(0),         // 4: v1.SendChannelMessageResponse.Status
+	(GetChannelListResponse_Status)(0),             // 5: v1.GetChannelListResponse.Status
+	(KickFromChannelResponse_Status)(0),            // 6: v1.KickFromChannelResponse.Status
+	(BanFromChannelResponse_Status)(0),             // 7: v1.BanFromChannelResponse.Status
+	(UnbanFromChannelResponse_Status)(0),           // 8: v1.UnbanFromChannelResponse.Status
+	(SetChannelModeratorResponse_Status)(0),        // 9: v1.SetChannelModeratorResponse.Status
+	(UnsetChannelModeratorResponse_Status)(0),      // 10: v1.UnsetChannelModeratorResponse.Status
+	(SetChannelMuteResponse_Status)(0),             // 11: v1.SetChannelMuteResponse.Status
+	(UnsetChannelMuteResponse_Status)(0),           // 12: v1.UnsetChannelMuteResponse.Status
+	(SetChannelOwnerResponse_Status)(0),            // 13: v1.SetChannelOwnerResponse.Status
+	(SetChannelPasswordResponse_Status)(0),         // 14: v1.SetChannelPasswordResponse.Status
+	(ToggleChannelModerationResponse_Status)(0),    // 15: v1.ToggleChannelModerationResponse.Status
+	(ToggleChannelAnnouncementsResponse_Status)(0), // 16: v1.ToggleChannelAnnouncementsResponse.Status
+	(InviteToChannelResponse_Status)(0),            // 17: v1.InviteToChannelResponse.Status
+	(*SendWhisperMessageRequest)(nil),              // 18: v1.SendWhisperMessageRequest
+	(*SendWhisperMessageResponse)(nil),             // 19: v1.SendWhisperMessageResponse
+	(*JoinChannelRequest)(nil),                     // 20: v1.JoinChannelRequest
+	(*JoinChannelResponse)(nil),                    // 21: v1.JoinChannelResponse
+	(*LeaveChannelRequest)(nil),                    // 22: v1.LeaveChannelRequest
+	(*LeaveChannelResponse)(nil),                   // 23: v1.LeaveChannelResponse
+	(*SendChannelMessageRequest)(nil),              // 24: v1.SendChannelMessageRequest
+	(*SendChannelMessageResponse)(nil),             // 25: v1.SendChannelMessageResponse
+	(*GetChannelListRequest)(nil),                  // 26: v1.GetChannelListRequest
+	(*GetChannelListResponse)(nil),                 // 27: v1.GetChannelListResponse
+	(*KickFromChannelRequest)(nil),                 // 28: v1.KickFromChannelRequest
+	(*KickFromChannelResponse)(nil),                // 29: v1.KickFromChannelResponse
+	(*BanFromChannelRequest)(nil),                  // 30: v1.BanFromChannelRequest
+	(*BanFromChannelResponse)(nil),                 // 31: v1.BanFromChannelResponse
+	(*UnbanFromChannelRequest)(nil),                // 32: v1.UnbanFromChannelRequest
+	(*UnbanFromChannelResponse)(nil),               // 33: v1.UnbanFromChannelResponse
+	(*SetChannelModeratorRequest)(nil),             // 34: v1.SetChannelModeratorRequest
+	(*SetChannelModeratorResponse)(nil),            // 35: v1.SetChannelModeratorResponse
+	(*UnsetChannelModeratorRequest)(nil),           // 36: v1.UnsetChannelModeratorRequest
+	(*UnsetChannelModeratorResponse)(nil),          // 37: v1.UnsetChannelModeratorResponse
+	(*SetChannelMuteRequest)(nil),                  // 38: v1.SetChannelMuteRequest
+	(*SetChannelMuteResponse)(nil),                 // 39: v1.SetChannelMuteResponse
+	(*UnsetChannelMuteRequest)(nil),                // 40: v1.UnsetChannelMuteRequest
+	(*UnsetChannelMuteResponse)(nil),               // 41: v1.UnsetChannelMuteResponse
+	(*SetChannelOwnerRequest)(nil),                 // 42: v1.SetChannelOwnerRequest
+	(*SetChannelOwnerResponse)(nil),                // 43: v1.SetChannelOwnerResponse
+	(*SetChannelPasswordRequest)(nil),              // 44: v1.SetChannelPasswordRequest
+	(*SetChannelPasswordResponse)(nil),             // 45: v1.SetChannelPasswordResponse
+	(*ToggleChannelModerationRequest)(nil),         // 46: v1.ToggleChannelModerationRequest
+	(*ToggleChannelModerationResponse)(nil),        // 47: v1.ToggleChannelModerationResponse
+	(*ToggleChannelAnnouncementsRequest)(nil),      // 48: v1.ToggleChannelAnnouncementsRequest
+	(*ToggleChannelAnnouncementsResponse)(nil),     // 49: v1.ToggleChannelAnnouncementsResponse
+	(*InviteToChannelRequest)(nil),                 // 50: v1.InviteToChannelRequest
+	(*InviteToChannelResponse)(nil),                // 51: v1.InviteToChannelResponse
+	(*ChannelInfo)(nil),                            // 52: v1.ChannelInfo
+	(*ChannelMember)(nil),                          // 53: v1.ChannelMember
 }
 var file_chat_proto_depIdxs = []int32{
-	0, // 0: v1.SendWhisperMessageResponse.status:type_name -> v1.SendWhisperMessageResponse.Status
-	1, // 1: v1.ChatService.SendWhisperMessage:input_type -> v1.SendWhisperMessageRequest
-	2, // 2: v1.ChatService.SendWhisperMessage:output_type -> v1.SendWhisperMessageResponse
-	2, // [2:3] is the sub-list for method output_type
-	1, // [1:2] is the sub-list for method input_type
-	1, // [1:1] is the sub-list for extension type_name
-	1, // [1:1] is the sub-list for extension extendee
-	0, // [0:1] is the sub-list for field type_name
+	1,  // 0: v1.SendWhisperMessageResponse.status:type_name -> v1.SendWhisperMessageResponse.Status
+	0,  // 1: v1.JoinChannelRequest.teamID:type_name -> v1.TeamID
+	2,  // 2: v1.JoinChannelResponse.status:type_name -> v1.JoinChannelResponse.Status
+	52, // 3: v1.JoinChannelResponse.channel:type_name -> v1.ChannelInfo
+	0,  // 4: v1.LeaveChannelRequest.teamID:type_name -> v1.TeamID
+	3,  // 5: v1.LeaveChannelResponse.status:type_name -> v1.LeaveChannelResponse.Status
+	0,  // 6: v1.SendChannelMessageRequest.teamID:type_name -> v1.TeamID
+	4,  // 7: v1.SendChannelMessageResponse.status:type_name -> v1.SendChannelMessageResponse.Status
+	0,  // 8: v1.GetChannelListRequest.teamID:type_name -> v1.TeamID
+	5,  // 9: v1.GetChannelListResponse.status:type_name -> v1.GetChannelListResponse.Status
+	53, // 10: v1.GetChannelListResponse.members:type_name -> v1.ChannelMember
+	0,  // 11: v1.KickFromChannelRequest.teamID:type_name -> v1.TeamID
+	6,  // 12: v1.KickFromChannelResponse.status:type_name -> v1.KickFromChannelResponse.Status
+	0,  // 13: v1.BanFromChannelRequest.teamID:type_name -> v1.TeamID
+	7,  // 14: v1.BanFromChannelResponse.status:type_name -> v1.BanFromChannelResponse.Status
+	0,  // 15: v1.UnbanFromChannelRequest.teamID:type_name -> v1.TeamID
+	8,  // 16: v1.UnbanFromChannelResponse.status:type_name -> v1.UnbanFromChannelResponse.Status
+	0,  // 17: v1.SetChannelModeratorRequest.teamID:type_name -> v1.TeamID
+	9,  // 18: v1.SetChannelModeratorResponse.status:type_name -> v1.SetChannelModeratorResponse.Status
+	0,  // 19: v1.UnsetChannelModeratorRequest.teamID:type_name -> v1.TeamID
+	10, // 20: v1.UnsetChannelModeratorResponse.status:type_name -> v1.UnsetChannelModeratorResponse.Status
+	0,  // 21: v1.SetChannelMuteRequest.teamID:type_name -> v1.TeamID
+	11, // 22: v1.SetChannelMuteResponse.status:type_name -> v1.SetChannelMuteResponse.Status
+	0,  // 23: v1.UnsetChannelMuteRequest.teamID:type_name -> v1.TeamID
+	12, // 24: v1.UnsetChannelMuteResponse.status:type_name -> v1.UnsetChannelMuteResponse.Status
+	0,  // 25: v1.SetChannelOwnerRequest.teamID:type_name -> v1.TeamID
+	13, // 26: v1.SetChannelOwnerResponse.status:type_name -> v1.SetChannelOwnerResponse.Status
+	0,  // 27: v1.SetChannelPasswordRequest.teamID:type_name -> v1.TeamID
+	14, // 28: v1.SetChannelPasswordResponse.status:type_name -> v1.SetChannelPasswordResponse.Status
+	0,  // 29: v1.ToggleChannelModerationRequest.teamID:type_name -> v1.TeamID
+	15, // 30: v1.ToggleChannelModerationResponse.status:type_name -> v1.ToggleChannelModerationResponse.Status
+	0,  // 31: v1.ToggleChannelAnnouncementsRequest.teamID:type_name -> v1.TeamID
+	16, // 32: v1.ToggleChannelAnnouncementsResponse.status:type_name -> v1.ToggleChannelAnnouncementsResponse.Status
+	0,  // 33: v1.InviteToChannelRequest.teamID:type_name -> v1.TeamID
+	17, // 34: v1.InviteToChannelResponse.status:type_name -> v1.InviteToChannelResponse.Status
+	18, // 35: v1.ChatService.SendWhisperMessage:input_type -> v1.SendWhisperMessageRequest
+	20, // 36: v1.ChatService.JoinChannel:input_type -> v1.JoinChannelRequest
+	22, // 37: v1.ChatService.LeaveChannel:input_type -> v1.LeaveChannelRequest
+	24, // 38: v1.ChatService.SendChannelMessage:input_type -> v1.SendChannelMessageRequest
+	26, // 39: v1.ChatService.GetChannelList:input_type -> v1.GetChannelListRequest
+	28, // 40: v1.ChatService.KickFromChannel:input_type -> v1.KickFromChannelRequest
+	30, // 41: v1.ChatService.BanFromChannel:input_type -> v1.BanFromChannelRequest
+	32, // 42: v1.ChatService.UnbanFromChannel:input_type -> v1.UnbanFromChannelRequest
+	34, // 43: v1.ChatService.SetChannelModerator:input_type -> v1.SetChannelModeratorRequest
+	36, // 44: v1.ChatService.UnsetChannelModerator:input_type -> v1.UnsetChannelModeratorRequest
+	38, // 45: v1.ChatService.SetChannelMute:input_type -> v1.SetChannelMuteRequest
+	40, // 46: v1.ChatService.UnsetChannelMute:input_type -> v1.UnsetChannelMuteRequest
+	42, // 47: v1.ChatService.SetChannelOwner:input_type -> v1.SetChannelOwnerRequest
+	44, // 48: v1.ChatService.SetChannelPassword:input_type -> v1.SetChannelPasswordRequest
+	46, // 49: v1.ChatService.ToggleChannelModeration:input_type -> v1.ToggleChannelModerationRequest
+	48, // 50: v1.ChatService.ToggleChannelAnnouncements:input_type -> v1.ToggleChannelAnnouncementsRequest
+	50, // 51: v1.ChatService.InviteToChannel:input_type -> v1.InviteToChannelRequest
+	19, // 52: v1.ChatService.SendWhisperMessage:output_type -> v1.SendWhisperMessageResponse
+	21, // 53: v1.ChatService.JoinChannel:output_type -> v1.JoinChannelResponse
+	23, // 54: v1.ChatService.LeaveChannel:output_type -> v1.LeaveChannelResponse
+	25, // 55: v1.ChatService.SendChannelMessage:output_type -> v1.SendChannelMessageResponse
+	27, // 56: v1.ChatService.GetChannelList:output_type -> v1.GetChannelListResponse
+	29, // 57: v1.ChatService.KickFromChannel:output_type -> v1.KickFromChannelResponse
+	31, // 58: v1.ChatService.BanFromChannel:output_type -> v1.BanFromChannelResponse
+	33, // 59: v1.ChatService.UnbanFromChannel:output_type -> v1.UnbanFromChannelResponse
+	35, // 60: v1.ChatService.SetChannelModerator:output_type -> v1.SetChannelModeratorResponse
+	37, // 61: v1.ChatService.UnsetChannelModerator:output_type -> v1.UnsetChannelModeratorResponse
+	39, // 62: v1.ChatService.SetChannelMute:output_type -> v1.SetChannelMuteResponse
+	41, // 63: v1.ChatService.UnsetChannelMute:output_type -> v1.UnsetChannelMuteResponse
+	43, // 64: v1.ChatService.SetChannelOwner:output_type -> v1.SetChannelOwnerResponse
+	45, // 65: v1.ChatService.SetChannelPassword:output_type -> v1.SetChannelPasswordResponse
+	47, // 66: v1.ChatService.ToggleChannelModeration:output_type -> v1.ToggleChannelModerationResponse
+	49, // 67: v1.ChatService.ToggleChannelAnnouncements:output_type -> v1.ToggleChannelAnnouncementsResponse
+	51, // 68: v1.ChatService.InviteToChannel:output_type -> v1.InviteToChannelResponse
+	52, // [52:69] is the sub-list for method output_type
+	35, // [35:52] is the sub-list for method input_type
+	35, // [35:35] is the sub-list for extension type_name
+	35, // [35:35] is the sub-list for extension extendee
+	0,  // [0:35] is the sub-list for field type_name
 }
 
 func init() { file_chat_proto_init() }
@@ -334,14 +4271,422 @@ func file_chat_proto_init() {
 				return nil
 			}
 		}
+		file_chat_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*JoinChannelRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*JoinChannelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LeaveChannelRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*LeaveChannelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SendChannelMessageRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SendChannelMessageResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetChannelListRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetChannelListResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*KickFromChannelRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*KickFromChannelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BanFromChannelRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*BanFromChannelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnbanFromChannelRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnbanFromChannelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelModeratorRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelModeratorResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnsetChannelModeratorRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnsetChannelModeratorResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelMuteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[21].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelMuteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[22].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnsetChannelMuteRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[23].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UnsetChannelMuteResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[24].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelOwnerRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[25].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelOwnerResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[26].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelPasswordRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[27].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*SetChannelPasswordResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[28].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ToggleChannelModerationRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[29].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ToggleChannelModerationResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[30].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ToggleChannelAnnouncementsRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[31].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ToggleChannelAnnouncementsResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[32].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InviteToChannelRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[33].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*InviteToChannelResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChannelInfo); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_chat_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*ChannelMember); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_chat_proto_rawDesc,
-			NumEnums:      1,
-			NumMessages:   2,
+			NumEnums:      18,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
